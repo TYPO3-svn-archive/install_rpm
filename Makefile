@@ -50,7 +50,7 @@ all_rpms = \
     $(testsite_rpms)
     
 # RPM directories
-build_platform := SuSE
+build_platform := RH
 # TODO: have to determine if SuSE
 
 ifeq "$(build_platform)" "RH"
@@ -69,8 +69,8 @@ gpg_key_name = TYPO3 RPM Key
 
 # --- main targets ------------------------------------------
 
-debug:
-	echo "$(rpm_dir)"
+#debug:
+#	echo "$(rpm_dir)"
 
 usage:
 	@echo "TYPO3 RPM Builder - available targets:"
