@@ -8,9 +8,8 @@ alltargets = typo3 imagemagick $(allsites)
 
 typo_tarball = src/typo3_src-$(typo_version).tar.gz
 typo_rpms = \
-    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm
-#    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm \
-#    rpm/typo3-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
+    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm \
+    rpm/typo3-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
     
 imagick_release = 	1.3
 imagick_tarball = 	src/ImageMagick-4.2.9.tar.gz
@@ -42,14 +41,26 @@ all_required = \
     $(quickstart_tarball) \
     $(testsite_tarball)
     
+# list of all rpms
+all_rpms = \
+    $(typo_rpms) \
+    $(imagick_rpm) \
+    $(quickstart_rpms) \
+    $(dummy_rpms) \
+    $(testsite_rpms)
+    
 # RPM directories
 # TODO: have to determine if SuSE
 rpm_dir = /usr/src/redhat/RPMS
 src_dir = /usr/src/redhat/SOURCES
 
+# Signature Key
+gpg_key_name = TYPO3 RPM Key
+
+
 # --- main targets ------------------------------------------
 
-debug: clean typo3
+#debug: clean typo3
 
 usage:
 	@echo "TYPO3 RPM Builder - available targets:"
@@ -74,12 +85,29 @@ dummy: $(dummy_rpms)
 
 testsite: $(testsite_rpms)
 
+sign:	all
+#	mv -f ~/.rpmmacros ~/.rpmmacros.sav
+#	echo "%_gpg_name $(gpg_key_name)" >> ~/.rpmmacros
+#	echo "%_signature gpg" >> ~/.rpmmacros
+#	echo " " >> ~/.rpmmacros
+#	echo "Signing packages:"
+	chmod og-rwx ./keys
+	rpm \
+	    --define "_gpg_name $(gpg_key_name)" \
+	    --define "_signature gpg" \
+	    --define "_gpg_path ./keys" \
+	    --resign $(all_rpms) \
+	    2>&1
+#	mv -f ~/.rpmmacros.sav ~/.rpmmacros
+
 clean:
 	rm -rf \
 	    $(quickstart_rpms)\
 	    $(dummy_rpms)\
+	    $(testsite_rpms)\
 	    $(dir $(rpm_dir))/BUILD/quickstart* \
 	    $(dir $(rpm_dir))/BUILD/dummy* \
+	    $(dir $(rpm_dir))/BUILD/testsite* \
 	    
 	rm -rf $(typo_rpms)
 # debug!!!
@@ -143,7 +171,7 @@ $(rpm_dir)/noarch/typo3-site-%-$(typo_version)-$(rpm_release)SuSE.noarch.rpm : \
 # --- intermediate targets ---------------------------------------
 
 # build the RPM spec using m4
-.PRECIOUS: $(src_dir)/%.spec
+#.PRECIOUS: $(src_dir)/%.spec
 $(src_dir)/%.spec: \
     typo3-common.spec \
     typo3-site-common.spec
