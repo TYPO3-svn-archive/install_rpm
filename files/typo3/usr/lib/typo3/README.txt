@@ -10,12 +10,12 @@ of the TYPO3 site RPMs:
    typo3-site-testsite
    typo3-site-quickstart
    
+and ImageMagick 4.2.9, available as
+
+   typo3-ImageMagick4
+   
 The RPM is based on typo3_src-3.x.x.tar.gz by Michael Stucki, available
 at http://typo3.sunsite.dk/unix-archives/
-
-The package contains binaries of ImageMagick 4.2.9 - this is the version
-recommended for TYPO3 image processing. These binaries come from
-ImageMagick-4.2.9-3.i386.rpm, Red Hat Linux 6.2.
 
 For updates or more information on this package, see http://typo3.mitka.us
 
@@ -29,14 +29,11 @@ http://www.typo3.com/
 ImageMagick (c) 1999 E. I. du Pont de Nemours and Company
 http://www.imagemagick.org/
 
-Test images of apples and oranges by Scott Bauer, Agricultural 
-Research Service, U.S. Department of Agriculture.
+Test images and videos by Agricultural Research Service, 
+U.S. Department of Agriculture.
 http://www.ars.usda.gov/is/graphics/photos/
 
 typo3_src-3.x.x.tar.gz by Michael Stucki <mundaun@gmx.ch>
-
-ImageMagick 4.2.9 binaries by Red Hat Inc., 
-http://www.redhat.com
 
 Nimbus Sans L regular Font by URW++ Design & Development GmbH,
 http://www.urwpp.de/

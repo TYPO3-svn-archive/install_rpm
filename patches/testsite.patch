@@ -1,6 +1,86 @@
+diff -r -c ./fileadmin/log.txt ../testsite-3.6.1.orig/fileadmin/log.txt
+*** ./fileadmin/log.txt	2004-05-11 09:14:30.000000000 -0400
+--- ../testsite-3.6.1.orig/fileadmin/log.txt	2004-06-06 15:11:19.510484600 -0400
+***************
+*** 0 ****
+--- 1,13 ----
++ 127.0.0.1 - - [04/Jun/2004:23:24:08 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 3390 "http://localhost/testsite/index.php?id=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [04/Jun/2004:23:24:12 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 11501 "http://localhost/testsite/?10" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [04/Jun/2004:23:24:25 +0000] "GET /Another_site_in_t.../Lists/Addresses--13.html HTTP/1.1" 200 10721 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:24:10 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 3390 "http://localhost/testsite/" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:24:11 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 11501 "http://localhost/testsite/?10" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:24:16 +0000] "GET /Another_site_in_t.../Lists/Addresses--13.html HTTP/1.1" 200 10721 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:24:23 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 3390 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:24:25 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 11501 "http://localhost/testsite/index.php?10" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:25:08 +0000] "GET /Another_site_in_t.../Lists/Guestbook--15.html HTTP/1.1" 200 15305 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:10:25:45 +0000] "GET /Another_site_in_t.../Lists/Addresses--13.html HTTP/1.1" 200 10721 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:21:21:09 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 3390 "http://localhost/testsite/" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:21:21:10 +0000] "GET /Another_site_in_the_same_datab--10.html HTTP/1.1" 200 11501 "http://localhost/testsite/?10" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
++ 127.0.0.1 - - [05/Jun/2004:21:21:14 +0000] "GET /Another_site_in_t.../Lists/Addresses--13.html HTTP/1.1" 200 10721 "http://localhost/testsite/index.php?id=10&type=2" "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.6) Gecko/20040207 Firefox/0.8"
+Only in ../testsite-3.6.1.orig/typo3conf: a
+Only in ../testsite-3.6.1.orig/typo3conf: a.patch
 diff -r -c ./typo3conf/database.sql ../testsite-3.6.1.orig/typo3conf/database.sql
 *** ./typo3conf/database.sql	2004-05-11 09:14:32.000000000 -0400
---- ../testsite-3.6.1.orig/typo3conf/database.sql	2004-06-02 16:54:03.000000000 -0400
+--- ../testsite-3.6.1.orig/typo3conf/database.sql	2004-06-06 15:11:19.673459824 -0400
+***************
+*** 2046,2064 ****
+  --
+  
+  
+! INSERT INTO tt_address VALUES (1,13,1004091418,0,'Abraham \"Grampa\" Simpson','','abe@simpsons.test','','','','Springfield Retirement Castle','','Springfield','1233','USA','abe.jpg,abe2.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (2,13,985343918,0,'Willie','Groundskeeper','','','','','','Springfield Elementary School','Springfield','1234','USA','willie.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (3,13,1004091418,0,'Chief Wiggum','Chief of Police','wiggum@simpsons.test','','','','','Springfield Police','Springfield','1234','USA','wiggum.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (4,13,1004091418,0,'Moe Szyslak','Bartender','moe@simpsons.test','(987) 654 321','','','Moe\'s Tavern','Moe\'s Tavern','Springfield','1234','USA','moe.jpg','(987) faxme',0,'',0,0);
+! INSERT INTO tt_address VALUES (5,13,1004091418,0,'Marge Simpson','','marge@simpsons.test','','','','Evergreen Terrace 473','','Springfield','1234','USA','marge.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (13,47,1004366751,0,'J. Doe TEST (HTML, Food, Books)','','john.doe@test.test','+1 808-2020 202','','','His address','','What Ever Town','1234','','','',0,'',6,1);
+! INSERT INTO tt_address VALUES (14,47,1004366775,0,'John Doe TEST (PLAIN, Sport, Religion)','','john.doe@test.test','+1 808-2020 202','','','His address','','What Ever Town','1234','','','',0,'',9,0);
+! INSERT INTO tt_address VALUES (15,47,1004090254,0,'Sally Silvermoon','','sally@silvermoon.test','+1 808-2020 202','','','Her address\r\nIn some state','','What Ever Town','1234','','','',0,'',0,0);
+! INSERT INTO tt_address VALUES (16,146,1020942593,0,'Abraham \"Grampa\" Simpson','','abe@simpsons.com','','','','Springfield Retirement Castle','','Springfield','1233','USA','abe_01.jpg,abe2_01.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (17,146,1003499705,0,'Willie','Groundskeeper','','','','','','Springfield Elementary School','Springfield','1234','USA','willie_01.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (18,146,1003499705,0,'Chief Wiggum','Chief of Police','wiggum@simpsons.com','','','','','Springfield Police','Springfield','1234','USA','wiggum_01.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (19,146,1003499705,0,'Moe Szyslak','Bartender','moe@simpsons.com','(987) 654 321','','','Moe\'s Tavern','Moe\'s Tavern','Springfield','1234','USA','moe_01.jpg','(987) faxme',0,'',0,0);
+! INSERT INTO tt_address VALUES (20,146,1003499705,0,'Marge Simpson','','marge@simpsons.com','','','','Evergreen Terrace 473','','Springfield','1234','USA','marge_01.jpg','',0,'',0,0);
+  
+  --
+  -- Table structure for table 'tt_board'
+--- 2046,2061 ----
+  --
+  
+  
+! INSERT INTO tt_address VALUES (21,13,1086485254,0,'Samuel Clemens','','mtwain@twain.org','123-456-7890','','','','','Hartford, CT','','U.S.A.','200px-Mark_twain.jpg','',1,'',0,0);
+! INSERT INTO tt_address VALUES (22,13,1086485583,0,'Sir Winston Churchill','','','wchurchill@london.uk','','','','','London,','','U.K.','','',1,'',0,0);
+! INSERT INTO tt_address VALUES (23,13,1086486944,0,'Samuel Clemens','','mtwain@somewhere.com','123-456-7890','','','123 Main St.','','Hartford, CT','','U.S.A','200px-Mark_twain_01.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (24,13,1086487306,0,'Albert Einstein','','emc2@princeton.edu','456-555-7898','','','345 Green Way','','Princeton, NJ','','USA','200px-Einstein2.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (25,13,1086487748,0,'Bertrand Russell','','brussel@trinity.uk','0-555-4597-777','','','1 Long Rd.','','Penrhyndeudraeth, Wales','','','Russell2.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (26,13,1086488147,0,'Benjamin Franklin','','bfranklin@usd100.com','987-555-4546','','','23 Milk St.','','Boston, MA','','','small-benjamin-franklin.jpg','',0,'',0,0);
+! INSERT INTO tt_address VALUES (27,13,1086488538,0,'Thomas Edison','','taedison@bulb.com','784-555-4875','','','654 Long Wire Dr.','','Newark, NJ','','','ed_phone.jpg','',0,'',0,0);
+! 
+! 
+! 
+  
+  --
+  -- Table structure for table 'tt_board'
+***************
+*** 2248,2256 ****
+  INSERT INTO tt_content VALUES (9,1,1071585684,0,384,'text','Login','','Try to login on this site. \r\n\r\nUsername and password is \"test\" and \"test\". You\'ll be redirected to another page with a welcome message. \r\n\r\n(Also notice that the record with the login-fields below has a header in the TYPO3 interface which is not shown like the other record-headers on the site. This is because the type of the header is set to \"Hidden\".)','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (10,8,1014809825,0,1000000000,'text','Hi user of this website','','You just logged in. Notice that some things show up that were not available before - like this page!\r\n\r\nYou can <link 129>edit your profile here!</link>','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (11,1,1071584985,0,768,'shortcut','Inserted records','','','',0,8,'',0,0,'',0,0,0,'tt_content_8','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (12,3,1020785132,0,1000000000,'textpic','TEST2: Regular image scaling','','To the right you should see a jpg-image 200 pixels wide. The original is 300 pixel, but this is scaled to only 200. If you click it, a window will pop up with the image in original dimensions.','kongenshave1.jpg',200,17,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',1,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,1,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (13,3,1071593758,0,1000000000,'textpic','TEST3: Image in a frame','','Below you should see two similar images. The upper one is put into the imageframe by TYPO3. The lower one is a premade reference. If they matches ImageMagick (combine/composite) seems to work properly.','violinguy.jpg',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',6,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (14,3,1071593797,0,1000000000,'image','[preframed image]','','','preframed.jpg',0,0,'Preframed image. This image should definitely show as TYPO3 is told NOT to touch it (Image Options > Dont Change!)',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,1,'100','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (15,3,1071593777,0,1000000000,'text','TEST4: Regular JPG','','The preframed image above is NOT processed by TYPO3 in any way so no matter what setup you\'re having, this image should show.','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (16,1,1071585689,0,320,'textpic','FIRST TEST: Does the menu show?','','To the left you should see a menu with three items exactly like the image to the right shows.\r\n- Do you see this menu? If you do, this means that GDlib and FreeType works in your installation.\r\n\r\nNow, move your mouse over the menu. \r\n- Does the items shift to white text when you roll the mouse pointer over them? If they do it\'s even better, because this means that ImageMagick was properly installed. <b>If they do not (appear blank - which is a very common error) ImageMagick hasn\'t worked well. </b>Please check the <LINK http://typo3.org/1423.0.html _blank>Install Archive</LINK> on the TYPO3.org website for help.\r\n\r\n? Why would there be a difference? \r\n! Because Typo3 features an option, \"niceText\" when rendering text on images. This is a hack made to simulate better antialiased text than the FreeType library has been able to produce by itself. The trick is to generate the text in twice the size as a black/white mask which is then scaled down to 50% and finally used to overlay the text. \"niceText=0\" needs only GD/Freetype (is set for the regular menuitems), \"niceText=1\" utilizes ImageMagick (is set for the rollover-items). \r\nThe example also shows how much you gain by using the \"niceText\" feature, doesn\'t it?\r\n\r\n(BTW: When this content-record disappears when you login below it\'s because it\'s set to do so with the \"Hide at login\" option).','menu.gif',0,17,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,-1,'','','',0,0,0,1,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (17,12,1071664232,0,256,'text','Try to login as user \"be_test\"','','First of all you must ensure yourself that you are not logged in as the admin-users. If that\'s fixed, <LINK typo3/index.php?u=be_test&p=be_test _blank>click this link</LINK> and login. \r\n\r\nUsername: be_test \r\nPassword: be_test\r\n\r\n(If you don\'t get the login screen, but the browser just reloads the backend, you are already logged in and must logout first) \r\n\r\nWhen you log in you\'ll see the main pages, but the three subpages are not in the tree. This is because they are owned by the admin-user. Try to change their ovnership (the Access-submodule) ','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+--- 2245,2253 ----
+  INSERT INTO tt_content VALUES (9,1,1071585684,0,384,'text','Login','','Try to login on this site. \r\n\r\nUsername and password is \"test\" and \"test\". You\'ll be redirected to another page with a welcome message. \r\n\r\n(Also notice that the record with the login-fields below has a header in the TYPO3 interface which is not shown like the other record-headers on the site. This is because the type of the header is set to \"Hidden\".)','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (10,8,1014809825,0,1000000000,'text','Hi user of this website','','You just logged in. Notice that some things show up that were not available before - like this page!\r\n\r\nYou can <link 129>edit your profile here!</link>','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (11,1,1071584985,0,768,'shortcut','Inserted records','','','',0,8,'',0,0,'',0,0,0,'tt_content_8','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (12,3,1086490289,0,1000000000,'textpic','TEST2: Regular image scaling','','To the right you should see a jpg-image 250 pixels wide. The original is 400 pixel, but this is scaled to only 250. If you click it, a window will pop up with the image in original dimensions.','apples.jpg',250,17,'Fuji Apples by Scott Bauer, USDA',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',1,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,1,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (13,3,1086492338,0,1000000000,'textpic','TEST3: Image in a frame','','Below you should see two similar images. The upper one is put into the imageframe by TYPO3. The lower one is a reference image. If they match, ImageMagick (combine/composite) seems to work properly.','k5698-1-small.jpg',0,8,'Photo by Jack Dykinga, USDA',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',6,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (14,3,1086492545,0,1000000000,'image','[preframed image]','','','6fe1fff2ad.jpg',0,0,'Preframed image. This image should definitely show as TYPO3 is told NOT to touch it (Image Options > Dont Change!)',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,1,'100','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (15,3,1071593777,0,1000000000,'text','TEST4: Regular JPG','','The preframed image above is NOT processed by TYPO3 in any way so no matter what setup you\'re having, this image should show.','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'3','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (16,1,1071585689,0,320,'textpic','FIRST TEST: Does the menu show?','','To the left you should see a menu with three items exactly like the image to the right shows.\r\n- Do you see this menu? If you do, this means that GDlib and FreeType works in your installation.\r\n\r\nNow, move your mouse over the menu. \r\n- Does the items shift to white text when you roll the mouse pointer over them? If they do it\'s even better, because this means that ImageMagick was properly installed. <b>If they do not (appear blank - which is a very common error) ImageMagick hasn\'t worked well. </b>Please check the <LINK http://typo3.org/1423.0.html _blank>Install Archive</LINK> on the TYPO3.org website for help.\r\n\r\n? Why would there be a difference? \r\n! Because Typo3 features an option, \"niceText\" when rendering text on images. This is a hack made to simulate better antialiased text than the FreeType library has been able to produce by itself. The trick is to generate the text in twice the size as a black/white mask which is then scaled down to 50% and finally used to overlay the text. \"niceText=0\" needs only GD/Freetype (is set for the regular menuitems), \"niceText=1\" utilizes ImageMagick (is set for the rollover-items). \r\nThe example also shows how much you gain by using the \"niceText\" feature, doesn\'t it?\r\n\r\n(BTW: When this content-record disappears when you login below it\'s because it\'s set to do so with the \"Hide at login\" option).','menu.gif',0,17,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,-1,'','','',0,0,0,1,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (17,12,1071664232,0,256,'text','Try to login as user \"be_test\"','','First of all you must ensure yourself that you are not logged in as the admin-users. If that\'s fixed, <LINK typo3/index.php?u=be_test&p=be_test _blank>click this link</LINK> and login. \r\n\r\nUsername: be_test \r\nPassword: be_test\r\n\r\n(If you don\'t get the login screen, but the browser just reloads the backend, you are already logged in and must logout first) \r\n\r\nWhen you log in you\'ll see the main pages, but the three subpages are not in the tree. This is because they are owned by the admin-user. Try to change their ovnership (the Access-submodule) ','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
 ***************
 *** 2291,2297 ****
   INSERT INTO tt_content VALUES (57,31,985268316,0,384,'menu','\"Overview of these pages\"','','','',0,8,'',0,0,'',0,0,0,'','2',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'4','0',0,0,0,0,'',1,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
@@ -10,7 +90,7 @@ diff -r -c ./typo3conf/database.sql ../testsite-3.6.1.orig/typo3conf/database.sq
   INSERT INTO tt_content VALUES (61,30,985263643,0,1000000000,'script','[Default]','','','',0,8,'Default if no code is given',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (62,30,1071590822,0,1000000000,'text','The scripts','','This is the code from the scripts:\r\n\r\n<b>code1:</b>\r\nif (is_object($this)) {\r\n$params = $this->processParams($this->data[\"bodytext\"]);\r\n$content.=$this->wrap(\"Content of \'code1\' script, wrapped...\",$params[\"wrap\"]);\r\n} else {\r\ndie (\"This script must be included by TypoScript\");\r\n}\r\n','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,1,0,0,'0','0',0,0,0,0,'',0,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (63,31,1020794918,0,128,'menu','\"Sitemap\"','','','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'2','0',0,0,0,0,'',1,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
---- 2291,2297 ----
+--- 2288,2294 ----
   INSERT INTO tt_content VALUES (57,31,985268316,0,384,'menu','\"Overview of these pages\"','','','',0,8,'',0,0,'',0,0,0,'','2',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'4','0',0,0,0,0,'',1,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (58,30,1071748503,0,1000000000,'text','Inserting you own scripts','','This is easy. \r\n\r\nBelow there are three script-elements inserted on the page. And in the template the TypoScript snippet below is inserted.\r\n\r\nI strongly suggest that you take a look at the PHP-scripts used (they are in fileadmin/...) and begin by modifying them. Also remember that the TypoScript reference has a section in the very back on this subject.\r\n\r\n<pre>## SCRIPT content element<br />tt_content.script &gt;<br />tt_content.script = CASEtt_content.script {<br />&nbsp; key.field = select_key<br />&nbsp; code1 = PHP_SCRIPT<br />&nbsp; code1.file = fileadmin/code1_script.php</pre>\r\n<pre>&nbsp; code2 = PHP_SCRIPT<br />&nbsp; code2.file = fileadmin/code2_script.php<br />&nbsp; code2.image = IMAGE<br />&nbsp; code2.image {<br />&nbsp;&nbsp;&nbsp; file = GIFBUILDER<br />&nbsp;&nbsp;&nbsp; file.XY = [10.w]+20,[10.h]+20<br />&nbsp;&nbsp;&nbsp; file.backColor = teal<br />&nbsp;&nbsp;&nbsp; file.10 = TEXT<br />&nbsp;&nbsp;&nbsp; file.10.align=center<br />&nbsp;&nbsp;&nbsp; file.10.offset = 0,30<br />&nbsp;&nbsp;&nbsp; file.10.fontSize = 25<br />&nbsp;&nbsp;&nbsp; file.10.fontColor = white<br />&nbsp; }</pre>\r\n<pre class=\"\">&nbsp; default = PHP_SCRIPT<br />&nbsp; default.file = fileadmin/default_script.php<br />}</pre>\r\n','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,6,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (59,30,1071590260,0,1000000000,'script','[Code 1 script - Hello World]','','wrap = <font color=\"red\"><i> | </i></font>','',0,8,'This is a test script',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'code1',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
@@ -18,6 +98,23 @@ diff -r -c ./typo3conf/database.sql ../testsite-3.6.1.orig/typo3conf/database.sq
   INSERT INTO tt_content VALUES (61,30,985263643,0,1000000000,'script','[Default]','','','',0,8,'Default if no code is given',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (62,30,1071590822,0,1000000000,'text','The scripts','','This is the code from the scripts:\r\n\r\n<b>code1:</b>\r\nif (is_object($this)) {\r\n$params = $this->processParams($this->data[\"bodytext\"]);\r\n$content.=$this->wrap(\"Content of \'code1\' script, wrapped...\",$params[\"wrap\"]);\r\n} else {\r\ndie (\"This script must be included by TypoScript\");\r\n}\r\n','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,1,0,0,'0','0',0,0,0,0,'',0,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (63,31,1020794918,0,128,'menu','\"Sitemap\"','','','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'2','0',0,0,0,0,'',1,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
+***************
+*** 2305,2311 ****
+  INSERT INTO tt_content VALUES (71,31,985269655,0,24,'image','','','','ts_index.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (73,39,1070921491,0,256,'list','List of addresses','','','',0,8,'',0,0,'',0,0,0,'','13',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (74,40,1002056170,0,256,'shortcut','Various records inserted','','','',0,8,'',0,0,'',0,0,0,'tt_calender_7,tt_news_1,tt_products_3,tt_address_5,tt_calender_3,tt_products_2,tt_board_1,tt_products_5,tt_guest_2,tt_address_1,tt_address_2,tt_rating_1','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (75,13,1071663348,0,1024,'textpic','About address lists','','Address lists looks like this. You may want another layout, probably a more \"list\"-like version, but you\'ll have to do that your self. \r\n\r\nYou must include the static template \"content.tt_address\" before you can display address records.\r\n\r\n<b>The \"list\" content element:</b>\r\n\"Startingpoint\" is the page(s) (one or more) from which to get the address items. Default is current page. \r\nThe \"Recursive\" field is not enabled for address lists!','address.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',20,0,0,'','left','',0,0,0,1,'0','',0,2,0,0,'0','0',0,0,0,0,'',0,0,0,21,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (76,39,985348853,0,512,'list','Guestbook (from page 15)','','','',0,8,'',0,0,'',0,0,0,'','15',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','3',0,0,0,0,'GUESTBOOK',0,0,0,5,0,'0','',0,3,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (77,39,985349128,0,768,'list','Calendar of elements from \"Lists\" page','','','',0,8,'',0,0,'',0,0,0,'','11,41',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','7',0,0,0,0,'',0,0,0,5,0,'0','',0,2,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (78,11,1071663967,0,1024,'textpic','[Notice header - hidden]','','<b>Notice:</b> In order to use the render-code displayed here, you must include the proper extensions in TYPO3. Eg. for addresses to render, include the extension \"tt_address\"','pagetree_overview.gif,tt_address.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,1,'100','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+--- 2302,2308 ----
+  INSERT INTO tt_content VALUES (71,31,985269655,0,24,'image','','','','ts_index.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (73,39,1070921491,0,256,'list','List of addresses','','','',0,8,'',0,0,'',0,0,0,'','13',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,5,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (74,40,1002056170,0,256,'shortcut','Various records inserted','','','',0,8,'',0,0,'',0,0,0,'tt_calender_7,tt_news_1,tt_products_3,tt_address_5,tt_calender_3,tt_products_2,tt_board_1,tt_products_5,tt_guest_2,tt_address_1,tt_address_2,tt_rating_1','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
+! INSERT INTO tt_content VALUES (75,13,1086489380,0,1024,'textpic','About address lists','','Address lists looks like this. You may want another layout, probably a more \"list\"-like version, but you\'ll have to do that your self. \r\n\r\nYou must include the static template \"content.tt_address\" before you can display address records.\r\n\r\n<b>The \"list\" content element:</b>\r\n\"Startingpoint\" is the page(s) (one or more) from which to get the address items. Default is current page. \r\nThe \"Recursive\" field is not enabled for address lists!','snapshot1.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',20,0,0,'','left','',0,0,0,1,'0','',0,2,0,0,'0','0',0,0,0,0,'',0,0,0,21,0,'0','',0,0,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (76,39,985348853,0,512,'list','Guestbook (from page 15)','','','',0,8,'',0,0,'',0,0,0,'','15',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','3',0,0,0,0,'GUESTBOOK',0,0,0,5,0,'0','',0,3,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (77,39,985349128,0,768,'list','Calendar of elements from \"Lists\" page','','','',0,8,'',0,0,'',0,0,0,'','11,41',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','7',0,0,0,0,'',0,0,0,5,0,'0','',0,2,0,0,0,0,0,0,'');
+  INSERT INTO tt_content VALUES (78,11,1071663967,0,1024,'textpic','[Notice header - hidden]','','<b>Notice:</b> In order to use the render-code displayed here, you must include the proper extensions in TYPO3. Eg. for addresses to render, include the extension \"tt_address\"','pagetree_overview.gif,tt_address.gif',0,8,'',0,1,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,1,'100','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
 ***************
 *** 2354,2360 ****
   INSERT INTO tt_content VALUES (123,57,999700121,0,128,'script','[Dynamic content from a PHP-function]','','','',0,8,'The output of this function is merged with the cached content of the page. This gives high performance on pages with the need for dynamic portions.',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'dynamic_test',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
@@ -27,10 +124,19 @@ diff -r -c ./typo3conf/database.sql ../testsite-3.6.1.orig/typo3conf/database.sq
   INSERT INTO tt_content VALUES (128,59,1071765922,0,256,'text','XML / WAP / PDA','','<blockquote>This template has included some experimental static templates which renders the page in XML, WAP or PDA format if you like.</blockquote>\r\n\r\nThe <b>WAP format</b> is retrived if you add the \"&type=97\" parameter to the url. Click here for an <LINK 1,197 _blank>example of the frontpage in WML format</LINK> (Notice that the type number \'197\' is used, which will display the wap source code as HTML for you. The real WML page is at type number 97 as said). IMPORTANT NOTICE: The WAP template record in TYPO3 pulls a little trick if the client turns out to be a normal WAP device - then the WAP pages are served from \"&type=0\" ! So only when using WAP browsers (like Opera) should you use \"&type=97\".\r\n\r\nThe <b>XML format</b> is retrived if you add the \"&type=96\" parameter to the url. Click here for an <LINK 1,96 _blank>example of the frontpage in XML format.</LINK>\r\n\r\nThe <b>PDA friendly format</b> is basically a printer friendly content rendering plus navigation for the site. This output would work great with a Palm browser like AvantGo. Click here for an <LINK 1,95 _blank>example of the frontpage in PDA friendly style.</LINK>\r\n\r\nThe <b>Plain Text format</b> is used for email newletters and is retrived if you add the \"&type=99\" parameter to the url. Click here for an <LINK 1,199 _blank>example of the frontpage in Plain Text format</LINK> (Notice that the type number \'199\' is used, which will display the plain text code correctly formatted in HTML).\r\n\r\nThe <b>Printer friendly</b> is retrived if you add the \"&type=98\" parameter to the url. Click here for an <LINK 1,98 _blank>example of the frontpage in printer friendly format (just without menu, only content).</LINK>\r\n\r\n','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (129,61,1000214173,0,256,'list','','','','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','5',0,0,0,0,'tracking',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
   INSERT INTO tt_content VALUES (130,96,1020795347,0,256,'text','','','Hello. \r\nHere is some text.\r\nThis is a <LINK 49>link to another page in another window.</LINK>\r\n','',0,8,'',0,0,'',0,0,0,'','',0,0,0,'',0,0,0,'','','',0,0,0,0,'0','',0,0,0,0,'0','0',0,0,0,0,'',0,0,0,0,0,'0','',0,0,0,0,0,0,0,0,'');
---- 2354,2359 ----
+--- 2351,2356 ----
+***************
+*** 2753,2755 ****
+--- 2749,2752 ----
+  
+  
+  
++ 
+Only in ../testsite-3.6.1.orig/typo3conf: database.sql.sav
+Only in ../testsite-3.6.1.orig/typo3conf: datanew.sql
 diff -r -c ./typo3conf/localconf.php ../testsite-3.6.1.orig/typo3conf/localconf.php
 *** ./typo3conf/localconf.php	2004-05-11 09:14:30.000000000 -0400
---- ../testsite-3.6.1.orig/typo3conf/localconf.php	2004-06-02 16:54:03.000000000 -0400
+--- ../testsite-3.6.1.orig/typo3conf/localconf.php	2004-06-06 15:11:19.549478672 -0400
 ***************
 *** 21,31 ****
   
@@ -45,7 +151,7 @@ diff -r -c ./typo3conf/localconf.php ../testsite-3.6.1.orig/typo3conf/localconf.
 ! // Updated by TYPO3 Extension Manager 21-12-2003 17:37:32
   ?>
 \ No newline at end of file
---- 21,38 ----
+--- 21,40 ----
   
   ## INSTALL SCRIPT EDIT POINT TOKEN - all lines after this points may be changed by the install script!
   
@@ -63,5 +169,104 @@ diff -r -c ./typo3conf/localconf.php ../testsite-3.6.1.orig/typo3conf/localconf.
 ! $TYPO3_CONF_VARS["SYS"]["doNotCheckReferer"] = '1';     //  Modified or inserted by TY
 ! $TYPO3_CONF_VARS["GFX"]["gif_compress"] = '0';  //  Modified or inserted by TYPO3 Inst
 ! // Updated by TYPO3 Install Tool 30-05-2004 14:42:01
+! $TYPO3_CONF_VARS['EXT']['extList'] = 'css_styled_content,tsconfig_help,extra_page_cm_options,sys_note,tstemplate,tstemplate_ceditor,tstemplate_info,tstemplate_objbrowser,tstemplate_analyzer,func_wizards,wizard_crpages,wizard_sortpages,lowlevel,install,belog,beuser,phpmyadmin,aboutmodules,imagelist,setup,taskcenter,sys_notepad,taskcenter_recent,taskcenter_rootlist,info_pagetsconfig,metatags,tt_address,tt_calender,direct_mail_subscription,feuser_admin,tt_guest,tt_board,tt_news,tt_poll,tt_rating,tipafriend,plugin_mgm,taskcenter_modules,sys_action,sys_todos,sys_workflows,user_photomarathon,static_file_edit,sys_stat,viewpage,tt_products,direct_mail,extrep_wizard,indexed_search,tstemplate_styler,mininews,user_set_page_title,impexp,rte,rte_conf,context_help';       // Modified or inserted by TYPO3 Extension Manager. 
+! // Updated by TYPO3 Extension Manager 06-06-2004 14:48:39
   ?>
 \ No newline at end of file
+Only in ../testsite-3.6.1.orig/typo3conf: temp_CACHED_psac3e_ext_localconf.php
+Only in ../testsite-3.6.1.orig/typo3conf: temp_CACHED_psac3e_ext_tables.php
+Only in ../testsite-3.6.1.orig/typo3temp: 0cc5f396e2.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 19af43371d.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 25ac3c4c5a.png
+Only in ../testsite-3.6.1.orig/typo3temp: 306719eb8e.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 3128a76cd9.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 34a5de7a6b.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 3657c8d748.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 472e9f4537.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 4f5b6fc167.png
+Only in ../testsite-3.6.1.orig/typo3temp: 4f61eca192.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 6fe1fff2ad.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 771e7906bc.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 7dbf20c273.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 894510f20c.png
+Only in ../testsite-3.6.1.orig/typo3temp: 9d702f71ed.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: 9de604ff2b.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: a2857afcdf.png
+Only in ../testsite-3.6.1.orig/typo3temp: a807842a8e.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: aa09521d66.png
+Only in ../testsite-3.6.1.orig/typo3temp: dcad0001d3.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: ecae621651.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_312a807d80.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_505944aa16.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_55318211cf.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_61493a4f47.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_84675688c0.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_901ae8b3f4.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_acf18398d2.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_aec5338a84.png
+Only in ../testsite-3.6.1.orig/typo3temp: GB_b5bbb7fe79.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_019bc1e9d5.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_09b2fd3529.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_0f237f7a77.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_1d507d5a8e.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_1ffc877ea1.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_2053248bb3.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_269389e42c.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_27b8ec06f0.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_2f089106f6.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_309fc56a35.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_3406a0ecb4.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_3543291fa4.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_3dcde590f3.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_4322819c73.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_4ee4a72dbf.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_52dd8023ae.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_6a8694e67c.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_6c1c97dbd4.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_786b8d7747.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_873b6713ec.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_889b2924a9.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_8fa8bb9227.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_a7cf782671.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_b0bbd7d8fe.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_b4c9baf7e7.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_c3028ced84.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_cf4a76ab2a.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_d3745449c6.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_d522ff99b9.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_db55d9ff74.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_dc3b69e76a.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_ddc605b7d8.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_dde4ca804e.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_e0647fa558.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_e890bcceae.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_ef4472d890.png
+Only in ../testsite-3.6.1.orig/typo3temp: m_f73ef2932a.png
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_190b969c6d.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_206f5ccaec.png
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_28786867e6.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_3d5561af57.png
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_485bde8e40.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_6d0ab10a72.png
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_6dc763cb61.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_98e948a44a.jpg
+Only in ../testsite-3.6.1.orig/typo3temp: tmb_b83d536c34.jpg
+Binary files ./uploads/pics/abe_01.jpg and ../testsite-3.6.1.orig/uploads/pics/abe_01.jpg differ
+Binary files ./uploads/pics/abe2_01.jpg and ../testsite-3.6.1.orig/uploads/pics/abe2_01.jpg differ
+Only in ./uploads/pics: abe2.jpg
+Binary files ./uploads/pics/abe.jpg and ../testsite-3.6.1.orig/uploads/pics/abe.jpg differ
+Only in ./uploads/pics: address.gif
+Binary files ./uploads/pics/ae2-18-2002_01.gif and ../testsite-3.6.1.orig/uploads/pics/ae2-18-2002_01.gif differ
+Binary files ./uploads/pics/ae2-18-2002.gif and ../testsite-3.6.1.orig/uploads/pics/ae2-18-2002.gif differ
+Binary files ./uploads/pics/ae9-11-2000-bw.jpg and ../testsite-3.6.1.orig/uploads/pics/ae9-11-2000-bw.jpg differ
+Only in ./uploads/pics: kongenshave1.jpg
+Binary files ./uploads/pics/marge_01.jpg and ../testsite-3.6.1.orig/uploads/pics/marge_01.jpg differ
+Binary files ./uploads/pics/marge.jpg and ../testsite-3.6.1.orig/uploads/pics/marge.jpg differ
+Binary files ./uploads/pics/moe_01.jpg and ../testsite-3.6.1.orig/uploads/pics/moe_01.jpg differ
+Binary files ./uploads/pics/moe.jpg and ../testsite-3.6.1.orig/uploads/pics/moe.jpg differ
+Only in ./uploads/pics: preframed.jpg
+Only in ./uploads/pics: violinguy.jpg
+Binary files ./uploads/pics/wiggum_01.jpg and ../testsite-3.6.1.orig/uploads/pics/wiggum_01.jpg differ
+Binary files ./uploads/pics/wiggum.jpg and ../testsite-3.6.1.orig/uploads/pics/wiggum.jpg differ
+Binary files ./uploads/pics/willie_01.jpg and ../testsite-3.6.1.orig/uploads/pics/willie_01.jpg differ
+Binary files ./uploads/pics/willie.jpg and ../testsite-3.6.1.orig/uploads/pics/willie.jpg differ

@@ -82,11 +82,25 @@ usage() {
     echo " "
 }
 
+echo "TYPO3-BuildRPM"
+echo "Dimitri Tarassenko <mitka@mitka.us>"
+echo " "
+
+# Check that we have all sources there
+if [ ! -f $BUILDDIR/src/typo3_src-$TYPOVERSION.tar.gz ] || \
+   [ ! -f $BUILDDIR/src/quickstart-$TYPOVERSION.tar.gz ] || \
+   [ ! -f $BUILDDIR/src/dummy-$TYPOVERSION.tar.gz ] || \
+   [ ! -f $BUILDDIR/src/testsite-$TYPOVERSION.tar.gz ] || \
+   [ ! -f $BUILDDIR/src/ImageMagick-4.2.9.tar.gz ]; then
+    echo "ERROR: One or more source files are missing from $BUILDDIR/src."
+    echo " "
+    cat $BUILDDIR/src/README
+    echo " "
+    usage
+    exit 1
+fi
 
 if [ -z "$1" ]; then
-    echo "TYPO3-BuildRPM"
-    echo "Dimitri Tarassenko <m1tk4@hotmail.com>"
-    echo " "
     usage
     exit 1
 fi
