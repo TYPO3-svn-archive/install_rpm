@@ -68,10 +68,10 @@ QUICKDIR="%{buildroot}%{typo_sitedir}/%site_name"
 %__rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-, root,%apache_group)
+%defattr(-, root, %apache_group)
 %typo_sitedir/%site_name
 
-%defattr(-, root,root)
+%defattr(-, root, root)
 #RH:	%config /etc/httpd/conf.d/typo3-%site_name.conf
 #SuSE:	%config /etc/apache2/vhosts.d/typo3-%site_name.conf
 
@@ -119,8 +119,9 @@ if [ "$?" != "0" ]; then
     /bin/sleep 5
 fi
 /usr/bin/mysql -e "drop database t3%site_name; delete from mysql.user where User='t3%site_name'; flush privileges; "
+$MYSQLD stop > /dev/null
 %__rm -rf /var/lib/mysql/t3%site_name
-$MYSQLD restart > /dev/null
+$MYSQLD start > /dev/null
 $HTTPD status > /dev/null
 if [ "$?" == "0" ]; then
     $HTTPD reload > /dev/null

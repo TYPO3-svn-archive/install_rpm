@@ -12,6 +12,7 @@ buildrpm() {
     # $2 = package name
     # $3 = build architecture
     # $4 = RH or SuSE
+    # $5 = is site package?
     
     PKGNAME=$2
     BUILDARCH=$3
@@ -41,12 +42,11 @@ buildrpm() {
     echo " " >> $SPECTMP
     cat $SPEC >> $SPECTMP
     echo " " >> $SPECTMP
-    if [ $PKGNAME == "quickstart" ]; then
+    if [ $5 ]; then
 	cat $BUILDDIR/typo3-site-common.spec >> $SPECTMP
 	echo " " >> $SPECTMP
     fi
-    sed -i s/~~TYPOVERSION~~/$TYPOVERSION/g $SPECTMP
-    sed -i s/~~RPMRELEASE~~/$RPMRELEASE/ $SPECTMP
+    # Uncomment flavor-specific stuff
     sed -i "s/^#$BUILDSUBFLAVOR:\s*//" $SPECTMP
     grep -v "^#" $SPECTMP > $SPECTMP.r # remove comments
     mv -f $SPECTMP.r $SPECTMP
@@ -78,7 +78,7 @@ buildrpm() {
 
 usage() {
     echo "Usage: $0 <package>"
-    echo "Available package: ALL, typo3, quickstart"
+    echo "Available package: ALL, typo3, ImageMagick4, quickstart, dummy, testsite."
     echo " "
 }
 
@@ -93,16 +93,18 @@ fi
 
 case "$1" in 
     "ALL" )  
-    ;;
+	;;
     "typo3" ) 
 	buildrpm typo3 typo3 noarch RH
 	buildrpm typo3 typo3 noarch SuSE
 	;;
-    "ImageMagick4" ) buildrpm typo3-ImageMagick4 ImageMagick4 i386;;
-    "quickstart" ) 
-	buildrpm typo3-site-quickstart quickstart noarch RH 
-	buildrpm typo3-site-quickstart quickstart noarch SuSE 
-    ;;
+    "ImageMagick4" ) 
+	buildrpm typo3-ImageMagick4 ImageMagick4 i386
+	;;
+    "quickstart" | "dummy" | "testsite" ) 
+	buildrpm typo3-site-$1 $1 noarch RH 1
+	buildrpm typo3-site-$1 $1 noarch SuSE 1
+	;;
     * ) echo "ERROR: $1 is not a valid package"; usage; exit 1 ;;    
 esac	
 

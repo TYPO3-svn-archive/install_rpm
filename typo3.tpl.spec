@@ -67,6 +67,7 @@ TYPOLIB="%{buildroot}%{typo_libdir}"
 %__cp --recursive ../typo3.%rpm_flavor/* --target-directory=%buildroot
 # Fix permissions
 %__chmod -R g+w,o-rwx $TYPOLIB
+%__chmod -R g-w $TYPOLIB/common
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT

@@ -8,12 +8,8 @@
 Name: typo3-ImageMagick4
 Version: 4.2.9
 Release: 1.1
-Copyright: freeware
-Vendor: http://typo3.mitka.us
-Packager: Dimitri Tarassenko <mitka@mitka.us>
 Summary: ImageMagick 4.2.9 for TYPO3
 Group: Applications/Multimedia
-Distribution: TYPO3
 
 BuildRoot: /var/tmp/%{name}
 Prefix: /usr/lib/typo3/ImageMagick4

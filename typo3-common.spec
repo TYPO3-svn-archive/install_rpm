@@ -11,7 +11,7 @@
 #RH:    %define	rpm_flavor	RH
 #SuSE:  %define rpm_flavor	SuSE
 
-%define	rpm_release	0.5a%rpm_flavor
+%define	rpm_release	0.4%rpm_flavor
 
 #RH:	%define	apache_group	apache
 #SuSE:	%define	apache_group	www
@@ -21,7 +21,7 @@
 
 
 # Stuff that's the same for all of them
-Copyright: GPL
+Copyright: GPL/Freeware (see contents)
 Vendor: http://typo3.mitka.us
 Packager: Dimitri Tarassenko <mitka.mitka.us>
 Group: Applications/Internet
