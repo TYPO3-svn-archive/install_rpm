@@ -3,5 +3,25 @@ Package name:	TYPO3 Source
 ===========================================================================
 Contents:	The source of TYPO3
 ===========================================================================
-
+Note:		This is only the core source of TYPO3 CMS. It is
+		used to update your current installation of TYPO3 and
+		to provide CMS framework for TYPO3-based websites.
+		
+		To test TYPO3 and see what it is capable of,
+		download and install one of the "site packages":
+		
+		- typo3-site-quickstart
+		- typo3-site-testsite
+		
+		To start your own new website, use the dummy package:
+		
+		- typo3-site-dummy
+		
+		You will also need ImageMagick 4.2.9 that is used by TYPO3
+		to perform graphic conversions, enhance images, etc. It is
+		available as:
+		
+		- typo3-ImageMagick4-4.2.9
+		
+	
 ===========================================================================

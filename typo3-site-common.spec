@@ -11,6 +11,20 @@ m4_define( m4_mysqld,
     m4_ifelse( m4_rpm_flavor, `SuSE', `/etc/init.d/mysql')))m4_dnl
 m4_dnl .........................................
 m4_dnl 
+m4_define( m4_make_sure, `m4_dnl
+# make sure "$1" is really executed!
+	for x in 1 2 3 4 5; do
+	    $1
+	    if [ $? -eq 0 ]; then
+	        break;
+	    else
+		echo "Failed [$?], retrying $x : $1"
+	        sleep 5
+	    fi
+	done
+')m4_dnl
+m4_dnl .........................................
+m4_dnl 
 m4_define( m4_mysql_whore, `m4_dnl
 # fix the config
 MYCONF="/etc/my.cnf"
@@ -23,10 +37,12 @@ EOF
 # restart mysql in passwordless mode now
 m4_mysqld status > /dev/null
 if [ $? -eq 0 ]; then
-    m4_mysqld restart > /dev/null
+    m4_make_sure( m4_mysqld `stop' )
+    m4_make_sure( m4_mysqld `start' )
 else
-    m4_mysqld start > /dev/null
+    m4_make_sure( m4_mysqld `start' )
 fi
+sleep 10
 ')m4_dnl
 m4_dnl .........................................
 m4_dnl
@@ -35,7 +51,8 @@ m4_define( m4_mysql_virgin, `m4_dnl
 MYCONF="/etc/my.cnf"
 mv -f $MYCONF.TYPO-SAVE $MYCONF
 # restart mysql in normal mode
-m4_mysqld restart > /dev/null
+m4_make_sure( m4_mysqld `stop' )
+m4_make_sure( m4_mysqld `start' )
 ')m4_dnl
 m4_dnl .........................................
 m4_dnl
@@ -136,17 +153,18 @@ m4_apache_restart
 
 %postun
 m4_mysql_whore
-/usr/bin/mysql -e " \
-    drop database t3%site_name; \
-    delete from mysql.user where User='t3%site_name'; \
-    delete from mysql.db where User='t3%site_name'; \
-    flush privileges; "
-m4_mysqld stop > /dev/null
+/usr/bin/mysql -e "delete from mysql.user where User='t3%site_name';"
+/usr/bin/mysql -e "delete from mysql.db where User='t3%site_name';"
+/usr/bin/mysql -e "drop database t3%site_name;"
+/usr/bin/mysql -e "flush privileges;"
+m4_make_sure ( m4_mysqld stop )
 %__rm -rf /var/lib/mysql/t3%site_name
 m4_mysql_virgin
 m4_apache_restart
 
 %changelog
+* Sun Nov 14 2004 Dimitri Tarassenko <mitka@mitka.us> 3.6.2-0.6
+- updated to 3.7.0
 * Fri Jul 16 2004 Dimitri Tarassenko <mitka@mitka.us> 3.6.2-0.6
 - mysql password protected root acct circumvented
 - makefiles written instead of build scripts

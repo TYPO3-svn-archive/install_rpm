@@ -1,17 +1,18 @@
 SHELL = /bin/bash
 
 typo_version := $(shell cat VERSION)
-rpm_release = 0.6
+rpm_release = 0.7
 
-alltargets = typo3 quickstart testsite dummy imagemagick
 allsites = quickstart testsite dummy
+alltargets = typo3 imagemagick $(allsites)
 
 typo_tarball = src/typo3_src-$(typo_version).tar.gz
 typo_rpms = \
-    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm \
-    rpm/typo3-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
+    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm
+#    rpm/typo3-$(typo_version)-$(rpm_release)RH.noarch.rpm \
+#    rpm/typo3-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
     
-imagick_release = 	1.2
+imagick_release = 	1.3
 imagick_tarball = 	src/ImageMagick-4.2.9.tar.gz
 imagick_rpm = 		rpm/typo3-ImageMagick4-4.2.9-$(imagick_release).i386.rpm
 imagick_patch = 	ImageMagick-4.2.9-delegates.patch
@@ -23,12 +24,23 @@ dummy_tarball = 	src/dummy-$(typo_version).tar.gz
 quickstart_rpms = \
     rpm/typo3-site-quickstart-$(typo_version)-$(rpm_release)RH.noarch.rpm \
     rpm/typo3-site-quickstart-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
+
+dummy_rpms = \
+    rpm/typo3-site-dummy-$(typo_version)-$(rpm_release)RH.noarch.rpm \
+    rpm/typo3-site-dummy-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
+
+testsite_rpms = \
+    rpm/typo3-site-testsite-$(typo_version)-$(rpm_release)RH.noarch.rpm \
+    rpm/typo3-site-testsite-$(typo_version)-$(rpm_release)SuSE.noarch.rpm
+
+#    rpm/typo3-site-dummy-$(typo_version)-$(rpm_release)RH.noarch.rpm
     
 # list of all tarballs and other files required for building that are not in cvs
 all_required = \
     $(typo_tarball) \
     $(imagick_tarball) \
-    $(quickstart_tarball) 
+    $(quickstart_tarball) \
+    $(testsite_tarball)
     
 # RPM directories
 # TODO: have to determine if SuSE
@@ -37,7 +49,7 @@ src_dir = /usr/src/redhat/SOURCES
 
 # --- main targets ------------------------------------------
 
-debug: clean quickstart
+debug: clean typo3
 
 usage:
 	@echo "TYPO3 RPM Builder - available targets:"
@@ -58,24 +70,52 @@ imagemagick: $(imagick_tarball) $(imagick_rpm)
 
 quickstart: $(quickstart_rpms)
 
+dummy: $(dummy_rpms)
+
+testsite: $(testsite_rpms)
+
 clean:
 	rm -rf \
 	    $(quickstart_rpms)\
-	    $(dir $(rpm_dir))/BUILD/quickstart*
+	    $(dummy_rpms)\
+	    $(dir $(rpm_dir))/BUILD/quickstart* \
+	    $(dir $(rpm_dir))/BUILD/dummy* \
+	    
+	rm -rf $(typo_rpms)
+# debug!!!
+	rm -rf $(src_dir)/*.spec
+	
 #	    $(imagick_rpm) \
 #	    $(src_dir)/$(notdir $(imagick_tarball)) \
 #	    $(src_dir)/ImageMagick4.tgz
-#	rm -rf $(typo_rpms)
-# debug!!!
-	rm -rf $(src_dir)/*.spec
 
+clean_dummy:
+	rm -rf \
+	    $(dummy_rpms)\
+	    $(dir $(rpm_dir))/BUILD/dummy* \
+	    $(src_dir)/dummy* \
+	    $(src_dir)/typo3-site-dummy* \
+
+clean_quickstart:
+	rm -rf \
+	    $(quickstart_rpms)\
+	    $(dir $(rpm_dir))/BUILD/quickstart* \
+	    $(src_dir)/quickstart* \
+	    $(src_dir)/typo3-site-quickstart* \
+
+clean_testsite:
+	rm -rf \
+	    $(testsite_rpms)\
+	    $(dir $(rpm_dir))/BUILD/testsite* \
+	    $(src_dir)/testsite* \
+	    $(src_dir)/typo3-site-testsite* \
 
 # --- typo3 source rpm building
 $(rpm_dir)/noarch/typo3-$(typo_version)-$(rpm_release)%.noarch.rpm: \
     $(src_dir)/typo3.%.spec \
-    $(src_dir)/$(notdir $(typo_tarball)) \
+    $(src_dir)/typo3.patch \
     $(src_dir)/typo3.%.tgz \
-    $(src_dir)/typo3.patch
+    $(src_dir)/$(notdir $(typo_tarball))
 	rpmbuild -ba --target=noarch-redhat-linux $<
 
 # --- IM 4.2.9
@@ -104,7 +144,9 @@ $(rpm_dir)/noarch/typo3-site-%-$(typo_version)-$(rpm_release)SuSE.noarch.rpm : \
 
 # build the RPM spec using m4
 .PRECIOUS: $(src_dir)/%.spec
-$(src_dir)/%.spec:
+$(src_dir)/%.spec: \
+    typo3-common.spec \
+    typo3-site-common.spec
 	m4 --prefix-builtins \
 	  --define=m4_rpm_flavor=$(subst .,,$(suffix $*)) \
 	  --define=m4_typo_version=$(typo_version) \

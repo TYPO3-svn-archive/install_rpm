@@ -23,7 +23,7 @@ For updates or more information on this package, see http://typo3.mitka.us
 Credits, Copyrights etc.
 ------------------------
 
-TYPO3 (c) 1999-2004 Kasper Skaarhoj <kasper@typo3.com>
+TYPO3 (c) 1999-2004 Kasper Skaarhoj <kasperYYYY@typo3.com>
 http://www.typo3.com/
 
 ImageMagick (c) 1999 E. I. du Pont de Nemours and Company

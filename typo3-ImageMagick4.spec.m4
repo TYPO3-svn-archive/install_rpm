@@ -1,6 +1,7 @@
 m4_dnl
 m4_dnl  ImageMagick 4.2.9 for TYPO3
 m4_dnl
+m4_define(m4_rpm_flavor, '')
 m4_sinclude(typo3-common.spec)
 
 Name: typo3-ImageMagick4

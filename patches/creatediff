@@ -41,7 +41,7 @@ m1_diff() {
     popd > /dev/null
     
     # Copy all our additional files, delete CVS dirs
-    cp -rf ../files/$PKGNAME/$ADDFILES/* --target-directory=$BUILDDIR/$ORIGINAL
+    #cp -rf ../files/$PKGNAME/$ADDFILES/* --target-directory=$BUILDDIR/$ORIGINAL
     find $BUILDDIR/$ORIGINAL -name CVS -exec rm -rf {} 2> /dev/null \;
     
     # Diff'em there
