@@ -1,0 +1,48 @@
+diff -r -c ./typo3conf/localconf.php ../quickstart-3.6.1.orig/typo3conf/localconf.php
+*** ./typo3conf/localconf.php	2004-05-11 09:14:28.000000000 -0400
+--- ../quickstart-3.6.1.orig/typo3conf/localconf.php	2004-05-21 16:34:58.000000000 -0400
+***************
+*** 17,20 ****
+--- 17,32 ----
+  // Setting Install Tool password to the default "joh316":
+  $TYPO3_CONF_VARS["BE"]["installToolPassword"] = "bacb98acf97e0b6112b1d1b650b84971";
+  
++ ## INSTALL SCRIPT EDIT POINT TOKEN - all lines after this points may be changed by the install script!
++ 
++ $TYPO3_CONF_VARS["GFX"]["im_path"] = '/usr/lib/typo3/ImageMagick-4.2.9/';       // Modified or inserted by TYPO3 Install Tool. 
++ $TYPO3_CONF_VARS["GFX"]["im_path_lzw"] = '/usr/lib/typo3/ImageMagick-4.2.9/';       // Modified or inserted by TYPO3 Install Tool. 
++ $TYPO3_CONF_VARS["GFX"]["TTFdpi"] = '96';	//  Modified or inserted by TYPO3 Install Tool.
++ $TYPO3_CONF_VARS["GFX"]["thumbnails_png"] = '1';	//  Modified or inserted by TYPO3 Install Tool.
++ $TYPO3_CONF_VARS["GFX"]["gdlib_png"] = '1';	//  Modified or inserted by TYPO3 Install Tool.
++ $typo_db_username = 't3quickstart';	//  Modified or inserted by TYPO3 Install Tool.
++ $typo_db_password = 't3quickstart';	//  Modified or inserted by TYPO3 Install Tool.
++ $typo_db_host = 'localhost';	//  Modified or inserted by TYPO3 Install Tool.
++ $typo_db = 't3quickstart';	//  Modified or inserted by TYPO3 Install Tool.
++ // Updated by TYPO3 Install Tool 21-05-2004 16:31:57
+  ?>
+\ No newline at end of file
+Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_localconf.php
+Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_tables.php
+Only in ../quickstart-3.6.1.orig/typo3temp: c598218977.png
+Only in ../quickstart-3.6.1.orig/typo3temp: charset_iso-8859-1.tbl
+Only in ../quickstart-3.6.1.orig/typo3temp: GB_969db1ee09.png
+Only in ../quickstart-3.6.1.orig/typo3temp: GB_9bc856f11a.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_44f1273ab1.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_48784f637a.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_a8f7a333c8.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_d1fa76faad.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_f6b0cedc4d.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_fcaf26c521.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_fe1e67e805.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_bmp.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_gif.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_jpg.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_pcx.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_png.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_tga.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_read_tif.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_gif.gif
+Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_jpg.jpg
+Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_png.png
+Only in ../quickstart-3.6.1.orig/typo3temp: install_write_gif.gif
+Only in ../quickstart-3.6.1.orig/typo3temp: install_write_png.png
