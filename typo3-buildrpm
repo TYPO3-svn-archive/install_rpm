@@ -11,9 +11,6 @@ BUILDPLATFORM="$BUILDARCH-$BUILDFLAVOR-linux"
 BUILDDIR=`dirname "$0"`
 PLATFORMDIR="$BUILDDIR/platforms/$BUILDFLAVOR/$BUILDSUBFLAVOR"
 
-SPEC="./typo3.tpl.spec"
-SPECTMP="/typo3.spec"
-
 # Pack all the additional files as extra sources
 cd files
 echo "Packaging all patches and additional files..."
@@ -27,25 +24,34 @@ do
 done
 cd ..
 
-#exit 1
-
 # Copy all sources and patches
 cp $BUILDDIR/src/*.gz --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 cp $BUILDDIR/patches/*.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 
-# Patch the spec for TYPO version number and add subflavor-specific headers
-sed s/~~RPMRELEASE~~/$RPMRELEASE/ $PLATFORMDIR/headers.spec > $SPECTMP
-echo >> $SPECTMP # make sure \n is at the end.
-sed s/~~TYPOVERSION~~/$TYPOVERSION/g $SPEC >> $SPECTMP
 
-# Run the rpm
-rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
-[ "$?" == "0" ] && rm /tmp/m1_build.out
+buildrpm() {
+    
+    SPEC="./$1.tpl.spec"
+    SPECTMP="/$1.spec"
 
-# Remove our temporary spec file
-rm $SPECTMP
+    # Patch the spec for TYPO version number and add subflavor-specific headers
+    sed s/~~RPMRELEASE~~/$RPMRELEASE/ $PLATFORMDIR/headers.spec > $SPECTMP
+    echo >> $SPECTMP # make sure \n is at the end.
+    sed s/~~TYPOVERSION~~/$TYPOVERSION/g $SPEC >> $SPECTMP
 
-# DEBUG get it here!
-mv /usr/src/$BUILDFLAVOR/RPMS/i386/typo*.rpm $BUILDDIR/rpm
+    # Run the rpmbuild
+    rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
+    [ "$?" == "0" ] && rm /tmp/m1_build.out
+
+    # Remove our temporary spec file
+    rm $SPECTMP
+
+    # move the file here
+    mv /usr/src/$BUILDFLAVOR/RPMS/i386/$1*.rpm $BUILDDIR/rpm
+
+}
+
+buildrpm typo3-site-quickstart
+
 
 
