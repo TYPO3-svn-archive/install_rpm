@@ -1,22 +1,114 @@
---- ./magick/defines.h.sav	1999-07-21 13:36:33.000000000 -0400
-+++ ./magick/defines.h	2004-05-30 10:03:16.317727864 -0400
-@@ -24,7 +24,7 @@
+--- ./magick/delegates.c.delegates	1999-08-09 23:41:12.000000000 -0400
++++ ./magick/delegates.c	2004-06-01 22:34:16.713822000 -0400
+@@ -284,11 +284,31 @@
+ %
+ %
+ */
++
++size_t dir_len (char *path) {
++    size_t prefix_length = 0;
++    size_t length;
++    /* Strip the basename and any redundant slashes before it.  */
++    for (length = strlen(path);  prefix_length < length;  length--)
++        if ( path[length - 1] == '/' )
++	    return length - 1;
++    /* But don't strip the only slash from "/".  */
++    return prefix_length + (size_t)( path[prefix_length] == '/');
++}
++
++void GetBinaryPath( char *path ) {
++    size_t pathlen = dir_len(m1BinaryName);
++    strncpy(path, m1BinaryName, pathlen );
++    path[pathlen] = '\0';
++}
++
++
+ Export unsigned int GetDelegateInfo(const char *decode_tag,
+   const char *encode_tag,DelegateInfo *delegate_info)
+ {
+   DelegateInfo
+     *delegates;
++  char binarypath[MaxTextExtent];
+ 
+   assert(delegate_info != (DelegateInfo *) NULL);
+   delegates=SetDelegateInfo((DelegateInfo *) NULL);
+@@ -305,10 +325,8 @@
+       *delegate_info.encode_tag='\0';
+       delegate_info.commands=(char *) NULL;
+       (void) SetDelegateInfo(&delegate_info);
+-      (void) ReadDelegates(DelegatePath,(char *) NULL);
+-      (void) ReadDelegates((char *) getenv("DELEGATE_PATH"),"/");
+-      (void) ReadDelegates((char *) getenv("HOME"),"/.magick/");
+-      (void) ReadDelegates((char *) NULL,(char *) NULL);
++      GetBinaryPath(binarypath);
++      (void) ReadDelegates(binarypath, "/");
+       delegates=SetDelegateInfo((DelegateInfo *) NULL);
+       if (delegates->next == (DelegateInfo *) NULL)
+         MagickWarning(DelegateWarning,"no delegates configuration file found",
+@@ -672,10 +690,13 @@
+ %
+ %
+ */
++      
++
+ Export void ListDelegateInfo(FILE *file)
+ {
+   char
+     delegate[MaxTextExtent],
++    binarypath[MaxTextExtent],
+     tag[MaxTextExtent];
+ 
+   DelegateInfo
+@@ -703,10 +724,8 @@
+       *delegate_info.encode_tag='\0';
+       delegate_info.commands=(char *) NULL;
+       (void) SetDelegateInfo(&delegate_info);
+-      (void) ReadDelegates(DelegatePath,(char *) NULL);
+-      (void) ReadDelegates((char *) getenv("DELEGATE_PATH"),"/");
+-      (void) ReadDelegates((char *) getenv("HOME"),"/.magick/");
+-      (void) ReadDelegates((char *) NULL,(char *) NULL);
++      GetBinaryPath(binarypath);
++      (void) ReadDelegates(binarypath, "/" );
+       delegates=SetDelegateInfo((DelegateInfo *) NULL);
+       if (delegates->next == (DelegateInfo *) NULL)
+         MagickWarning(DelegateWarning,"no delegates configuration file found",
+--- ./magick/defines.h.delegates	1999-07-21 13:36:33.000000000 -0400
++++ ./magick/defines.h	2004-06-01 22:39:02.191422808 -0400
+@@ -23,6 +23,9 @@
+ #if !defined(ApplicationDefaults)
  #define ApplicationDefaults  "/usr/X11R6/lib/X11/app-defaults/"
  #endif
++
++char m1BinaryName[MaxTextExtent];
++
  #if !defined(DelegatePath)
--#define DelegatePath  "/usr/local/share/ImageMagick/"
-+#define DelegatePath  "/usr/lib/typo3/ImageMagick4/"
+ #define DelegatePath  "/usr/local/share/ImageMagick/"
  #endif
- #define DirectorySeparator  "/"
- #define DirectoryListSeparator  ':'
---- ./delegates/delegates.mgk.in.sav	1999-08-06 14:15:12.000000000 -0400
-+++ ./delegates/delegates.mgk.in	2004-05-30 10:02:44.345588368 -0400
-@@ -56,7 +56,7 @@
+@@ -40,7 +43,7 @@
+    (strchr(text,']') != (char *) NULL))
+ #define PreferencesDefaults  "~/."
+ #define ProcessPendingEvents(text)
+-#define ReadCommandlLine(argc,argv)
++#define ReadCommandlLine(argc,argv) strcpy(m1BinaryName, *argv[0]);
+ #if !defined(RGBColorDatabase)
+ #define RGBColorDatabase  "/usr/X11R6/lib/X11/rgb.txt"
+ #endif
+--- ./delegates/delegates.mgk.in.delegates	1999-08-06 14:15:12.000000000 -0400
++++ ./delegates/delegates.mgk.in	2004-06-01 22:38:14.524669256 -0400
+@@ -54,14 +54,8 @@
+ # circumstances.  For example, the print or Ghostscript delegate.  Don't
+ # remove these or ImageMagick may behave strangely.
  # 
- # ImageMagick looks for the delegate configurarion file in this order:
- # 
+-# ImageMagick looks for the delegate configurarion file in this order:
+-# 
 -#     /usr/local/share/ImageMagick/delegates.mgk
-+#     /usr/lib/typo3/ImageMagick4/delegates.mgk
- #     DELEGATE_PATH/delegates.mgk
- #     HOME/.magick/delegates.mgk
- #     ./delegates.mgk
+-#     DELEGATE_PATH/delegates.mgk
+-#     HOME/.magick/delegates.mgk
+-#     ./delegates.mgk
+-# 
+-# where DELEGATE_PATH and HOME are environment variables.
++# ImageMagick looks for the delegate configurarion file in the directory
++# where the binary file of the started utility resides.
+ # 
+ # Like entries in the later two directory overrides the specification in
+ # the system-wide delegates file.

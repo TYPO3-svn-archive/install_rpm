@@ -7,7 +7,7 @@
 
 Name: typo3-ImageMagick4
 Version: 4.2.9
-Release: 1.0
+Release: 1.1
 Copyright: freeware
 Vendor: http://typo3.mitka.us
 Packager: Dimitri Tarassenko <mitka@mitka.us>
@@ -68,3 +68,10 @@ for TYPO3 Content Management System
 %defattr(-,root,root)
 /usr/lib/typo3/ImageMagick4
 
+%changelog
+
+* Tue Jun 01 2004 Dimitri Tarassenko <mitka@mitka.us> 4.2.9-1.1
+- delegates.mgk is only taken from the directory where the binary is
+  (/usr/share/ImageMagick ignored) to avoid conflicts with the 
+  IM5 XML-based files
+  

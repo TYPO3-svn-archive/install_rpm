@@ -48,7 +48,7 @@ buildrpm() {
 #    exit 0
 
     # Run the rpmbuild
-    rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
+    rpmbuild -ba --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
     if [ "$?" == "0" ]; then
 	rm /tmp/m1_build.out
 	rm -f $BUILDDIR/rpmerror.out
