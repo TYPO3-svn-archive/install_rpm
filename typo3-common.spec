@@ -11,7 +11,7 @@
 #RH:    %define	rpm_flavor	RH
 #SuSE:  %define rpm_flavor	SuSE
 
-%define	rpm_release	0.4%rpm_flavor
+%define	rpm_release	0.5%rpm_flavor
 
 #RH:	%define	apache_group	apache
 #SuSE:	%define	apache_group	www
