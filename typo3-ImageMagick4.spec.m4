@@ -53,6 +53,7 @@ for TYPO3 Content Management System
 %install
 %__rm -rf $RPM_BUILD_ROOT
 %__mkdir_p $RPM_BUILD_ROOT%{typo_libdir}/ImageMagick4
+%__strip combine identify convert
 %__mv -f combine identify convert README.txt  delegates/delegates.mgk $RPM_BUILD_ROOT%{typo_libdir}/ImageMagick4
 %__cp --recursive ../ImageMagick4/* --target-directory=$RPM_BUILD_ROOT
 

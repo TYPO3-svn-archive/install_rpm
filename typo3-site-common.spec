@@ -137,14 +137,16 @@ m4_mysql_whore
     VALUES('localhost','t3%{site_name}','t3%{site_name}','Y','Y','Y','Y','Y','Y');"
 /usr/bin/mysql t3%{site_name} < %typo_sitedir/%site_name/typo3conf/database.sql
 m4_mysql_virgin
-m4_ifelse( m4_rpm_flavor, `SuSE', `m4_dnl
+m4_changequote({{, }})
+m4_ifelse( m4_rpm_flavor, {{SuSE}}, {{m4_dnl
 # Make sure apache2 has mod_rewrite on SuSE
 AP2CFG="/etc/sysconfig/apache2"
 if [ ! "`grep "^APACHE_MODULES.*rewrite" $AP2CFG`" ]; then
 	awk '{ if ( match ($0, /^APACHE_MODULES=(.*)\"$/, r)) print "APACHE_MODULES=" r[1] " rewrite\""; else print }'  $AP2CFG > $AP2CFG.new
 	mv -f $AP2CFG.new $AP2CFG
 fi
-')m4_dnl
+}})m4_dnl
+m4_changequote(`,')
 m4_apache_restart
 
 %preun

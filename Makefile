@@ -50,9 +50,18 @@ all_rpms = \
     $(testsite_rpms)
     
 # RPM directories
+build_platform := SuSE
 # TODO: have to determine if SuSE
-rpm_dir = /usr/src/redhat/RPMS
-src_dir = /usr/src/redhat/SOURCES
+
+ifeq "$(build_platform)" "RH"
+    rpm_dir = /usr/src/redhat/RPMS
+    src_dir = /usr/src/redhat/SOURCES
+endif
+
+ifeq "$(build_platform)" "SuSE"
+    rpm_dir = /usr/src/packages/RPMS
+    src_dir = /usr/src/packages/SOURCES
+endif
 
 # Signature Key
 gpg_key_name = TYPO3 RPM Key
@@ -60,7 +69,8 @@ gpg_key_name = TYPO3 RPM Key
 
 # --- main targets ------------------------------------------
 
-#debug: clean typo3
+debug:
+	echo "$(rpm_dir)"
 
 usage:
 	@echo "TYPO3 RPM Builder - available targets:"
@@ -86,11 +96,6 @@ dummy: $(dummy_rpms)
 testsite: $(testsite_rpms)
 
 sign:	all
-#	mv -f ~/.rpmmacros ~/.rpmmacros.sav
-#	echo "%_gpg_name $(gpg_key_name)" >> ~/.rpmmacros
-#	echo "%_signature gpg" >> ~/.rpmmacros
-#	echo " " >> ~/.rpmmacros
-#	echo "Signing packages:"
 	chmod og-rwx ./keys
 	rpm \
 	    --define "_gpg_name $(gpg_key_name)" \
@@ -98,7 +103,6 @@ sign:	all
 	    --define "_gpg_path ./keys" \
 	    --resign $(all_rpms) \
 	    2>&1
-#	mv -f ~/.rpmmacros.sav ~/.rpmmacros
 
 clean:
 	rm -rf \
@@ -174,7 +178,7 @@ $(rpm_dir)/noarch/typo3-site-%-$(typo_version)-$(rpm_release)SuSE.noarch.rpm : \
 #.PRECIOUS: $(src_dir)/%.spec
 $(src_dir)/%.spec: \
     typo3-common.spec \
-    typo3-site-common.spec
+    typo3-site-common.spec 
 	m4 --prefix-builtins \
 	  --define=m4_rpm_flavor=$(subst .,,$(suffix $*)) \
 	  --define=m4_typo_version=$(typo_version) \
