@@ -47,27 +47,39 @@ QUICKDIR="%buildroot/var/typo3/quickstart"
 %__rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-, root,apache)
+#RH:	%defattr(-, root,apache)
+#SuSE:	%defattr(-, root,www)
 /var/typo3/quickstart
 %defattr(-, root,root)
 #RH:	%config /etc/httpd/conf.d/typo3-quickstart.conf
 #SuSE:	%config /etc/apache2/vhosts.d/typo3-quickstart.conf
 
 %post
+#RH:	MYSQLD="service mysqld"
+#SuSE:	MYSQLD="/etc/init.d/mysql"
+#RH:	HTTPD="service httpd"
+#SuSE:	HTTPD="/etc/init.d/apache2"
 # create the MySQL user and database
-service mysqld status > /dev/null
+$MYSQLD status > /dev/null
 if [ "$?" != "0" ]; then
     # let's try starting mysql
-    service mysqld start
-    sleep 5
+    $MYSQLD start
+    /bin/sleep 5
 fi
 /usr/bin/mysql -e "create database t3quickstart;"
 /usr/bin/mysql -e "grant all privileges on t3quickstart.* to 't3quickstart'@'localhost' identified by 't3quickstart' WITH Grant option;"
 /usr/bin/mysql t3quickstart < /var/typo3/quickstart/typo3conf/database.sql
+# Make sure apache2 has mod_rewrite on SuSE
+#SuSE:	AP2CFG="/etc/sysconfig/apache2"
+#SuSE:	if [ ! "`grep "^APACHE_MODULES.*rewrite" $AP2CFG`" ]; then
+#SuSE:		awk '{ if ( match ($0, /^APACHE_MODULES=(.*)\"$/, r)) print "APACHE_MODULES=" r[1] " rewrite\""; else print }'  $AP2CFG > $AP2CFG.new
+#SuSE:		mv -f $AP2CFG.new $AP2CFG
+#SuSE:	fi
+
 # restart Apache
-service httpd status > /dev/null
+$HTTPD status > /dev/null
 if [ "$?" == "0" ]; then
-    service httpd reload > /dev/null
+    $HTTPD reload > /dev/null
 fi
 
 %preun
@@ -75,17 +87,21 @@ fi
 %__rm -rf /var/typo3/quickstart/typo3conf/temp*
 
 %postun
-service mysqld status > /dev/null
+#RH:	MYSQLD="service mysqld"
+#SuSE:	MYSQLD="/etc/init.d/mysql"
+#RH:	HTTPD="service httpd"
+#SuSE:	HTTPD="/etc/init.d/apache2"
+$MYSQLD status > /dev/null
 if [ "$?" != "0" ]; then
     # let's try starting mysql
-    service mysqld start
-    sleep 5
+    $MYSQLD start
+    /bin/sleep 5
 fi
 /usr/bin/mysql -e "drop database t3quickstart; delete from mysql.user where User='t3quickstart'; flush privileges; "
 %__rm -rf /var/lib/mysql/t3quickstart
-service mysqld restart > /dev/null
-service httpd status > /dev/null
+$MYSQLD restart > /dev/null
+$HTTPD status > /dev/null
 if [ "$?" == "0" ]; then
-    service httpd reload > /dev/null
+    $HTTPD reload > /dev/null
 fi
 

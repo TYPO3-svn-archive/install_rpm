@@ -7,7 +7,7 @@
 
 Name: typo3-ImageMagick4
 Version: 4.2.9
-Release: ~~RPMRELEASE~~
+Release: 1.0
 Copyright: freeware
 Vendor: http://typo3.mitka.us
 Packager: Dimitri Tarassenko <mitka@mitka.us>

@@ -17,31 +17,11 @@ Distribution: TYPO3
 
 Requires: typo3 >= ~~TYPOVERSION~~
 Requires: typo3-ImageMagick4
-
-#RH:	Requires: httpd >= 2.0.40
-#SuSE:	Requires: apache2 >= 2.0.49
-
-#RH:	Requires: mysql-server >= 3.23.54
-#RH:	Requires: mysql >= 3.23.54
-#SuSE:  Requires: mysql >= 4.0.18
-#SuSE:  Requires: mysql-client: >= 4.0.18
-
-#RH:	Requires: php >= 4.2.2
-#RH:	Requires: php-mysql >= 4.2.2
-#SuSE:	Requires: php4 >= 4.3.4
-#SuSE:	Requires: apache2-mod_php4
-#SuSE:	Requires: php4-mysql
-#SuSE:	Requires: php4-pear
-#SuSE:	Requires: php4-zlib
-#SuSE:	Requires: php4-curl
-#SuSE:	Requires: php4-mbstring
-#SuSE:	Requires: php4-gd
-
-#RH:	Requires: freetype >= 2.1.3
-#SuSE:	Requires: freetype2
+#RH:	Requires: typo3-flavor-RedHat
+#SuSE:	Requires: typo3-flavor-SuSE
+Requires: coreutils, grep, gawk
 
 AutoReqProv: no
-
 Provides: typo3-site
 
 BuildRoot: /var/tmp/%{name}

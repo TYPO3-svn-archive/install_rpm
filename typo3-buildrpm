@@ -88,7 +88,10 @@ fi
 case "$1" in 
     "ALL" )  
     ;;
-    "typo3" ) buildrpm typo3 typo3 noarch;;
+    "typo3" ) 
+	buildrpm typo3 typo3 noarch RH
+	buildrpm typo3 typo3 noarch SuSE
+	;;
     "ImageMagick4" ) buildrpm typo3-ImageMagick4 ImageMagick4 i386;;
     "quickstart" ) 
 	buildrpm typo3-site-quickstart quickstart noarch RH 
