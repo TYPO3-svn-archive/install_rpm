@@ -28,6 +28,7 @@ m1_diff() {
     echo " - $PKGNAME"    
     
     # Copy the original files and remove symlinks
+    mkdir -p $BUILDDIR/$ORIGINAL.orig
     cp -rf $INSTALLED/* --target-directory=$BUILDDIR/$ORIGINAL.orig
     pushd $BUILDDIR/$ORIGINAL.orig > /dev/null
     find -type l -exec rm -f {} \; # we need to get rid of diffs for symlinks
@@ -40,8 +41,9 @@ m1_diff() {
     tar xvzf $ORIGINAL.tar.gz > /dev/null
     popd > /dev/null
     
-    # Copy all our additional files
+    # Copy all our additional files, delete CVS dirs
     cp -rf ../files/$PKGNAME/$ADDFILES/* --target-directory=$BUILDDIR/$ORIGINAL
+    find $BUILDDIR/$ORIGINAL -name CVS -exec rm -rf {} 2> /dev/null \;
     
     # Diff'em there
     pushd $BUILDDIR/$ORIGINAL > /dev/null

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+LINKSTO="`readlink $1`"
+echo "ln -s $LINKSTO $1" 

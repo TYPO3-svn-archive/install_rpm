@@ -1,0 +1,6 @@
+#!/bin/bash
+ln -s libMagick.so.4.0.29 ./typo3/usr/lib/libMagick.so.4
+ln -s wrapper.sh ./typo3/usr/lib/typo3-3.6.1/ImageMagick-4.2.9/combine
+ln -s wrapper.sh ./typo3/usr/lib/typo3-3.6.1/ImageMagick-4.2.9/convert
+ln -s wrapper.sh ./typo3/usr/lib/typo3-3.6.1/ImageMagick-4.2.9/identify
+ln -s libbz2.so.1 ./typo3/usr/lib/libbz2.so.0

@@ -21,7 +21,7 @@ for filedir in *
 do
     if [ -d $filedir ] && [ "$filedir" != "CVS" ]; then
 	echo "  - $filedir"
-        tar cvz $filedir/* > /usr/src/$BUILDFLAVOR/SOURCES/$filedir.tar.gz 2>/dev/null
+        tar cvz --exclude=CVS $filedir/* > /usr/src/$BUILDFLAVOR/SOURCES/$filedir.tar.gz 2>/dev/null
 	cp /usr/src/$BUILDFLAVOR/SOURCES/$filedir.tar.gz ./$filedir.tar.gz # keep one for us
     fi
 done
@@ -30,7 +30,7 @@ cd ..
 #exit 1
 
 # Copy all sources and patches
-cp $BUILDDIR/src/* --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
+cp $BUILDDIR/src/*.gz --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 cp $BUILDDIR/patches/*.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 
 # Patch the spec for TYPO version number and add subflavor-specific headers

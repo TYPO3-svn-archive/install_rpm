@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILESDIR=`dirname $0`
+SAVEFILE="$FILESDIR/symlinks.restore"
+echo "#!/bin/bash" > $SAVEFILE
+
+find -type l -exec ./saveonesymlink {} >> $SAVEFILE \;
+
