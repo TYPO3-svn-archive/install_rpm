@@ -2,37 +2,38 @@
 
 . ./settings
 
-# Build options 
-BUILDARCH="i386"
+BUILDDIR=`dirname "$0"`
 BUILDFLAVOR="redhat"
 BUILDSUBFLAVOR="RH"
-BUILDPLATFORM="$BUILDARCH-$BUILDFLAVOR-linux"
-#BUILDDIR="/root/rpmtest" # DEBUG: should be the path of this script!
-BUILDDIR=`dirname "$0"`
-PLATFORMDIR="$BUILDDIR/platforms/$BUILDFLAVOR/$BUILDSUBFLAVOR"
-
-# Pack all the additional files as extra sources
-cd files
-echo "Packaging all patches and additional files..."
-for filedir in *
-do
-    if [ -d $filedir ] && [ "$filedir" != "CVS" ]; then
-	echo "  - $filedir"
-        tar cvz --exclude=CVS $filedir/* > /usr/src/$BUILDFLAVOR/SOURCES/$filedir.tar.gz 2>/dev/null
-	cp /usr/src/$BUILDFLAVOR/SOURCES/$filedir.tar.gz ./$filedir.tar.gz # keep one for us
-    fi
-done
-cd ..
-
-# Copy all sources and patches
-cp $BUILDDIR/src/*.gz --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
-cp $BUILDDIR/patches/*.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 
 
 buildrpm() {
+
+    # $1 = rpm/spec name
+    # $2 = package name
+    # $3 = build architecture
     
-    SPEC="./$1.tpl.spec"
-    SPECTMP="/$1.spec"
+    PKGNAME=$2
+    BUILDARCH=$3
+    
+
+    # Pack all the additional files as extra sources
+    pushd $BUILDDIR/files > /dev/null
+    echo "Packaging all patches and additional files for: $PKGNAME"
+    tar cvz --exclude=CVS $PKGNAME/* > /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz 2>/dev/null
+    cp /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz ./$PKGNAME.tar.gz # keep one for us
+    popd > /dev/null
+
+    # Copy the sources and patches
+    cp $BUILDDIR/src/$PKGNAME*.gz --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
+    cp $BUILDDIR/patches/$PKGNAME.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
+
+    # Build options 
+    BUILDPLATFORM="$BUILDARCH-$BUILDFLAVOR-linux"
+    PLATFORMDIR="$BUILDDIR/platforms/$BUILDFLAVOR/$BUILDSUBFLAVOR"
+
+    SPEC="$BUILDDIR/$1.tpl.spec"
+    SPECTMP="$BUILDDIR/$1.spec"
 
     # Patch the spec for TYPO version number and add subflavor-specific headers
     sed s/~~RPMRELEASE~~/$RPMRELEASE/ $PLATFORMDIR/headers.spec > $SPECTMP
@@ -41,17 +42,48 @@ buildrpm() {
 
     # Run the rpmbuild
     rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
-    [ "$?" == "0" ] && rm /tmp/m1_build.out
-
+    if [ "$?" == "0" ]; then
+	rm /tmp/m1_build.out
+    else
+	echo "Error while building RPM. See details in rpmerror.out"
+	mv /tmp/m1_build.out $BUILDDIR/rpmerror.out
+	exit 1
+    fi
+    
     # Remove our temporary spec file
     rm $SPECTMP
 
     # move the file here
-    mv /usr/src/$BUILDFLAVOR/RPMS/i386/$1*.rpm $BUILDDIR/rpm
-
+    mv /usr/src/$BUILDFLAVOR/RPMS/$BUILDARCH/$1*.rpm $BUILDDIR/rpm
+    rm -f $BUILDDIR/rpm/*debug*.rpm
+    
+    # tell them everything is fine
+    echo " "
+    echo "Package '$2' built OK. Pick up the RPM at: $BUILDDIR/rpm/$1.rpm"
 }
 
-buildrpm typo3-site-quickstart
+usage() {
+    echo "Usage: $0 <package>"
+    echo "Available package: ALL, typo3, quickstart"
+    echo " "
+}
 
 
+if [ -z "$1" ]; then
+    echo "TYPO3-BuildRPM"
+    echo "Dimitri Tarassenko <m1tk4@hotmail.com>"
+    echo " "
+    usage
+    exit 1
+fi
+
+case "$1" in 
+    "ALL" )  
+	buildrpm typo3 typo3 i386
+	buildrpm typo3-site-quickstart quickstart noarch 
+    ;;
+    "typo3" ) buildrpm typo3 typo3 i386  ;;
+    "quickstart" ) buildrpm typo3-site-quickstart quickstart noarch  ;;
+    * ) echo "ERROR: $1 is not a valid package"; usage; exit 1 ;;    
+esac	
 
