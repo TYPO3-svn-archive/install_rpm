@@ -4,41 +4,48 @@
 
 BUILDDIR=`dirname "$0"`
 BUILDFLAVOR="redhat"
-BUILDSUBFLAVOR="RH"
-
+#BUILDSUBFLAVOR="RH"
 
 buildrpm() {
 
     # $1 = rpm/spec name
     # $2 = package name
     # $3 = build architecture
+    # $4 = RH or SuSE
     
     PKGNAME=$2
     BUILDARCH=$3
+    BUILDSUBFLAVOR=$4
     
-
     # Pack all the additional files as extra sources
+    [ "$BUILDSUBFLAVOR" != "" ] && FILESSUFFIX=".$BUILDSUBFLAVOR"
     pushd $BUILDDIR/files > /dev/null
     echo "Packaging all patches and additional files for: $PKGNAME"
-    tar cvz --exclude=CVS $PKGNAME/* > /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz 2>/dev/null
-    cp /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz ./$PKGNAME.tar.gz # keep one for us
+    tar cvz --exclude=CVS $PKGNAME${FILESSUFFIX}/* > /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz 2>/dev/null
+    cp -f /usr/src/$BUILDFLAVOR/SOURCES/$PKGNAME.tar.gz ./$PKGNAME$FILESSUFFIX.tar.gz # keep one for us
     popd > /dev/null
 
     # Copy the sources and patches
-    cp $BUILDDIR/src/$PKGNAME*.gz --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
-    cp $BUILDDIR/patches/$PKGNAME.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
+    cp -uf $BUILDDIR/src/* --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
+    cp -uf $BUILDDIR/patches/*.patch --target-directory=/usr/src/$BUILDFLAVOR/SOURCES
 
     # Build options 
     BUILDPLATFORM="$BUILDARCH-$BUILDFLAVOR-linux"
-    PLATFORMDIR="$BUILDDIR/platforms/$BUILDFLAVOR/$BUILDSUBFLAVOR"
 
     SPEC="$BUILDDIR/$1.tpl.spec"
     SPECTMP="$BUILDDIR/$1.spec"
 
     # Patch the spec for TYPO version number and add subflavor-specific headers
-    sed s/~~RPMRELEASE~~/$RPMRELEASE/ $PLATFORMDIR/headers.spec > $SPECTMP
-    echo >> $SPECTMP # make sure \n is at the end.
-    sed s/~~TYPOVERSION~~/$TYPOVERSION/g $SPEC >> $SPECTMP
+    echo " " > $SPECTMP # to clear it
+    if [ $PKGNAME == "quickstart" ]; then
+	cp typo3-site-common.spec $SPECTMP
+    fi
+    cat $SPEC >> $SPECTMP
+    sed -i s/~~TYPOVERSION~~/$TYPOVERSION/g $SPECTMP
+    sed -i s/~~RPMRELEASE~~/$RPMRELEASE/ $SPECTMP
+    sed -i "s/^#$BUILDSUBFLAVOR:\s*//" $SPECTMP
+
+#    exit 0
 
     # Run the rpmbuild
     rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
@@ -79,11 +86,13 @@ fi
 
 case "$1" in 
     "ALL" )  
-	buildrpm typo3 typo3 i386
-	buildrpm typo3-site-quickstart quickstart noarch 
     ;;
-    "typo3" ) buildrpm typo3 typo3 i386  ;;
-    "quickstart" ) buildrpm typo3-site-quickstart quickstart noarch  ;;
+    "typo3" ) buildrpm typo3 typo3 noarch;;
+    "ImageMagick4" ) buildrpm typo3-ImageMagick4 ImageMagick4 i386;;
+    "quickstart" ) 
+	buildrpm typo3-site-quickstart quickstart noarch RH 
+	buildrpm typo3-site-quickstart quickstart noarch SuSE 
+    ;;
     * ) echo "ERROR: $1 is not a valid package"; usage; exit 1 ;;    
 esac	
 

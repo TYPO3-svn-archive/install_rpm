@@ -1,6 +1,11 @@
+Only in ../typo3_src-3.6.1.orig: a
+Only in ../typo3_src-3.6.1.orig: ImageMagick4
+Only in ../typo3_src-3.6.1.orig: ImageMagick-4.2.9
+Only in ../typo3_src-3.6.1.orig: IM.sav
+Only in ../typo3_src-3.6.1.orig/t3lib: a
 diff -r -c ./t3lib/class.t3lib_install.php ../typo3_src-3.6.1.orig/t3lib/class.t3lib_install.php
 *** ./t3lib/class.t3lib_install.php	2004-05-11 09:14:26.000000000 -0400
---- ../typo3_src-3.6.1.orig/t3lib/class.t3lib_install.php	2004-05-28 15:12:42.000000000 -0400
+--- ../typo3_src-3.6.1.orig/t3lib/class.t3lib_install.php	2004-05-30 14:47:26.165756984 -0400
 ***************
 *** 956,962 ****
   		$sVar["imagejpeg()"]=function_exists("imagejpeg");
@@ -60,7 +65,7 @@ diff -r -c ./t3lib/class.t3lib_install.php ../typo3_src-3.6.1.orig/t3lib/class.t
   			$ex_rows.='<td><img src=clear.gif width=30 height=1></td>';
 diff -r -c ./t3lib/config_default.php ../typo3_src-3.6.1.orig/t3lib/config_default.php
 *** ./t3lib/config_default.php	2004-05-11 09:14:26.000000000 -0400
---- ../typo3_src-3.6.1.orig/t3lib/config_default.php	2004-05-28 15:12:42.000000000 -0400
+--- ../typo3_src-3.6.1.orig/t3lib/config_default.php	2004-05-30 14:47:21.000000000 -0400
 ***************
 *** 54,61 ****
   		'recursiveDomainSearch' => 0,			// Boolean. If set, the search for domain records will be done recursively by stripping parts of the host name off until a matching domain record is found.
@@ -91,10 +96,11 @@ diff -r -c ./t3lib/config_default.php ../typo3_src-3.6.1.orig/t3lib/config_defau
 + @setlocale(LC_TIME,''); // This is set so %x and %X in date formatting would default to system locale
 + 
   ?>
-Only in ../typo3_src-3.6.1.orig/typo3/ext/install: imgs.sav
+Only in ../typo3_src-3.6.1.orig/typo3: a
+Binary files ./typo3/ext/install/verify_imgs/install_scale_png.png and ../typo3_src-3.6.1.orig/typo3/ext/install/verify_imgs/install_scale_png.png differ
 diff -r -c ./typo3/install/index.php ../typo3_src-3.6.1.orig/typo3/install/index.php
 *** ./typo3/install/index.php	2004-05-11 09:14:26.000000000 -0400
---- ../typo3_src-3.6.1.orig/typo3/install/index.php	2004-05-28 15:12:42.000000000 -0400
+--- ../typo3_src-3.6.1.orig/typo3/install/index.php	2004-05-30 14:47:28.000000000 -0400
 ***************
 *** 42,48 ****
   

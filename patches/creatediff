@@ -58,5 +58,5 @@ m1_diff() {
 
 echo "Processing:"
 
-m1_diff typo3 typo3_src-$TYPOVERSION /usr/lib/typo3-$TYPOVERSION /usr/lib/typo3-$TYPOVERSION
+m1_diff typo3 typo3_src-$TYPOVERSION /usr/lib/typo3 /usr/lib/typo3
 m1_diff quickstart quickstart-$TYPOVERSION /var/typo3/quickstart /var/typo3/quickstart

@@ -1,0 +1,22 @@
+--- ./magick/defines.h.sav	1999-07-21 13:36:33.000000000 -0400
++++ ./magick/defines.h	2004-05-30 10:03:16.317727864 -0400
+@@ -24,7 +24,7 @@
+ #define ApplicationDefaults  "/usr/X11R6/lib/X11/app-defaults/"
+ #endif
+ #if !defined(DelegatePath)
+-#define DelegatePath  "/usr/local/share/ImageMagick/"
++#define DelegatePath  "/usr/lib/typo3/ImageMagick4/"
+ #endif
+ #define DirectorySeparator  "/"
+ #define DirectoryListSeparator  ':'
+--- ./delegates/delegates.mgk.in.sav	1999-08-06 14:15:12.000000000 -0400
++++ ./delegates/delegates.mgk.in	2004-05-30 10:02:44.345588368 -0400
+@@ -56,7 +56,7 @@
+ # 
+ # ImageMagick looks for the delegate configurarion file in this order:
+ # 
+-#     /usr/local/share/ImageMagick/delegates.mgk
++#     /usr/lib/typo3/ImageMagick4/delegates.mgk
+ #     DELEGATE_PATH/delegates.mgk
+ #     HOME/.magick/delegates.mgk
+ #     ./delegates.mgk

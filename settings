@@ -1,3 +1,3 @@
 #!/bin/bash
 TYPOVERSION="3.6.1"
-RPMRELEASE="0.9a"
+RPMRELEASE="0.4a"
