@@ -1,0 +1,11 @@
+
+TYPO3 Websites Home
+-------------------
+
+This directory contains the TYPO3-based websites installed using
+one or more of the typo3-site-* RPM packages or websites cloned
+using /usr/lib/typo3/tools/clonewebsite script.
+
+See http://typo3.mitka.us for more details.
+
+-- Dimitri Tarassenko <mitka@mitka.us>

@@ -1,16 +1,34 @@
+diff -r -c ./typo3conf/ext/mininews/ext_typoscript_setup.txt ../quickstart-3.6.1.orig/typo3conf/ext/mininews/ext_typoscript_setup.txt
+*** ./typo3conf/ext/mininews/ext_typoscript_setup.txt	2004-05-11 09:14:28.000000000 -0400
+--- ../quickstart-3.6.1.orig/typo3conf/ext/mininews/ext_typoscript_setup.txt	2004-05-28 15:12:48.000000000 -0400
+***************
+*** 1,6 ****
+  plugin.tx_mininews_pi1 {
+!   dateFormat = %d-%m-%y
+!   dateTimeFormat = %d-%m-%y %H:%M
+    listView {
+      disableDateDisplay = 0
+  	results_at_a_time=3
+--- 1,6 ----
+  plugin.tx_mininews_pi1 {
+!   dateFormat = %x
+!   dateTimeFormat = %x %X
+    listView {
+      disableDateDisplay = 0
+  	results_at_a_time=3
 diff -r -c ./typo3conf/localconf.php ../quickstart-3.6.1.orig/typo3conf/localconf.php
 *** ./typo3conf/localconf.php	2004-05-11 09:14:28.000000000 -0400
---- ../quickstart-3.6.1.orig/typo3conf/localconf.php	2004-05-21 16:34:58.000000000 -0400
+--- ../quickstart-3.6.1.orig/typo3conf/localconf.php	2004-05-28 15:12:48.000000000 -0400
 ***************
 *** 17,20 ****
---- 17,32 ----
+--- 17,33 ----
   // Setting Install Tool password to the default "joh316":
   $TYPO3_CONF_VARS["BE"]["installToolPassword"] = "bacb98acf97e0b6112b1d1b650b84971";
   
 + ## INSTALL SCRIPT EDIT POINT TOKEN - all lines after this points may be changed by the install script!
 + 
-+ $TYPO3_CONF_VARS["GFX"]["im_path"] = '/usr/lib/typo3/ImageMagick-4.2.9/';       // Modified or inserted by TYPO3 Install Tool. 
-+ $TYPO3_CONF_VARS["GFX"]["im_path_lzw"] = '/usr/lib/typo3/ImageMagick-4.2.9/';       // Modified or inserted by TYPO3 Install Tool. 
++ $TYPO3_CONF_VARS["GFX"]["im_path"] = '/usr/lib/typo3/ImageMagick4/';       // Modified or inserted by TYPO3 Install Tool. 
++ $TYPO3_CONF_VARS["GFX"]["im_path_lzw"] = '/usr/lib/typo3/ImageMagick4/';       // Modified or inserted by TYPO3 Install Tool. 
 + $TYPO3_CONF_VARS["GFX"]["TTFdpi"] = '96';	//  Modified or inserted by TYPO3 Install Tool.
 + $TYPO3_CONF_VARS["GFX"]["thumbnails_png"] = '1';	//  Modified or inserted by TYPO3 Install Tool.
 + $TYPO3_CONF_VARS["GFX"]["gdlib_png"] = '1';	//  Modified or inserted by TYPO3 Install Tool.
@@ -18,15 +36,20 @@ diff -r -c ./typo3conf/localconf.php ../quickstart-3.6.1.orig/typo3conf/localcon
 + $typo_db_password = 't3quickstart';	//  Modified or inserted by TYPO3 Install Tool.
 + $typo_db_host = 'localhost';	//  Modified or inserted by TYPO3 Install Tool.
 + $typo_db = 't3quickstart';	//  Modified or inserted by TYPO3 Install Tool.
-+ // Updated by TYPO3 Install Tool 21-05-2004 16:31:57
++ $TYPO3_CONF_VARS["SYS"]["doNotCheckReferer"] = '1';	//  Modified or inserted by TYPO3 Install Tool.
++ // Updated by TYPO3 Install Tool 28-05-2004 15:11:48
   ?>
 \ No newline at end of file
 Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_localconf.php
 Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_tables.php
+Only in ../quickstart-3.6.1.orig/typo3temp: 1c40be23f2.png
+Only in ../quickstart-3.6.1.orig/typo3temp: 2e1d6bb4e9.png
 Only in ../quickstart-3.6.1.orig/typo3temp: c598218977.png
 Only in ../quickstart-3.6.1.orig/typo3temp: charset_iso-8859-1.tbl
+Only in ../quickstart-3.6.1.orig/typo3temp: GB_2b65a347da.png
 Only in ../quickstart-3.6.1.orig/typo3temp: GB_969db1ee09.png
 Only in ../quickstart-3.6.1.orig/typo3temp: GB_9bc856f11a.png
+Only in ../quickstart-3.6.1.orig/typo3temp: GB_b13c42aec4.png
 Only in ../quickstart-3.6.1.orig/typo3temp: install_44f1273ab1.jpg
 Only in ../quickstart-3.6.1.orig/typo3temp: install_48784f637a.png
 Only in ../quickstart-3.6.1.orig/typo3temp: install_a8f7a333c8.png

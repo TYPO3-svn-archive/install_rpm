@@ -17,6 +17,8 @@ The package contains binaries of ImageMagick 4.2.9 - this is the version
 recommended for TYPO3 image processing. These binaries come from
 ImageMagick-4.2.9-3.i386.rpm, Red Hat Linux 6.2.
 
+For updates or more information on this package, see http://typo3.mitka.us
+
 
 Credits, Copyrights etc.
 ------------------------
@@ -42,4 +44,4 @@ http://www.urwpp.de/
 Bitstream Vera Sans Font by Bitstream Inc.,
 http://www.bitstream.com/categories/products/fonts/vera/
 
-RPM spec & Packaging by Dimitri Tarassenko <m1tk4@hotmail.com>
+RPM spec & Packaging by Dimitri Tarassenko <mitka@mitka.us>

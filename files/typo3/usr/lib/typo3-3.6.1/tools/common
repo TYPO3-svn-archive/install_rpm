@@ -1,0 +1,4 @@
+#!/bin/bash
+
+TYPO3SRCPATH=/usr/lib/typo3
+TYPO3SITEPATH=/var/typo3
