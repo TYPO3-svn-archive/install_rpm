@@ -6,19 +6,12 @@
 #
 
 Name: typo3
-Version: ~~TYPOVERSION~~
-#RH:    Release: ~~RPMRELEASE~~RH
-#SuSE:  Release: ~~RPMRELEASE~~SuSE
+Version: %typo_version
+Release: %rpm_release
 ExclusiveArch: noarch
-Copyright: GPL
-Vendor: http://typo3.mitka.us
-Packager: Dimitri Tarassenko <mitka.mitka.us>
 Summary: TYPO3 CMS Core
-Group: Applications/Internet
-Distribution: TYPO3
-BuildRoot: /var/tmp/%{name}
 
-Source0: typo3_src-~~TYPOVERSION~~.tar.gz
+Source0: typo3_src-%typo_version.tar.gz
 Source1: typo3.tar.gz
 Patch0: typo3.patch
 
@@ -48,9 +41,7 @@ Patch0: typo3.patch
                                                                                                       
 AutoReqProv: no
                                                                                                       
-#RH:    Provides: typo3-flavor-RedHat
-#SuSE:  Provides: typo3-flavor-SuSE
-
+Provides: typo3-flavor-%rpm_flavor
 
 %description
 TYPO3 is an enterprise-class Web Content Management System 
@@ -62,35 +53,35 @@ http://www.typo3.org
 %__rm -rf %_builddir/quickstart*
 %__rm -rf %_builddir/typo*
 %__rm -rf %buildroot
-%setup -b 1 -n typo3_src-~~TYPOVERSION~~
+%setup -b 1 -n typo3_src-%typo_version
 %patch
 
 %build
 
 %install
 # Copy all TYPO3 Sources, set permissions and create typo3 symlink
-TYPOLIB="%buildroot/usr/lib/typo3"
+TYPOLIB="%{buildroot}%{typo_libdir}"
 %__mkdir_p $TYPOLIB
 %__cp --recursive * --target-directory=$TYPOLIB
 # Now let's add/replace our custom files
-#RH:	%__cp --recursive ../typo3.RH/* --target-directory=%buildroot
-#SuSE:	%__cp --recursive ../typo3.SuSE/* --target-directory=%buildroot
+%__cp --recursive ../typo3.%rpm_flavor/* --target-directory=%buildroot
 # Fix permissions
-#%__chown -R root:apache $TYPOLIB
 %__chmod -R g+w,o-rwx $TYPOLIB
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT
 
 %files
-#RH:	%defattr(-, root,apache)
-#SuSE:	%defattr(-, root,www)
-/usr/lib/typo3
-/var/typo3
+%defattr(-, root,%apache_group)
+%typo_libdir
+%typo_sitedir
 
 %post
-/usr/lib/typo3/tools/setdatetimeformat --force
+%typo_libdir/tools/setdatetimeformat --force
 
 %postun
 
+%changelog
 
+* Fri Jun 02 2004 Dimitri Tarassenko <mitka@mitka.us> 3.6.1-0.5a
+- common macro header introduced

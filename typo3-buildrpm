@@ -37,13 +37,19 @@ buildrpm() {
 
     # Patch the spec for TYPO version number and add subflavor-specific headers
     echo " " > $SPECTMP # to clear it
-    if [ $PKGNAME == "quickstart" ]; then
-	cp typo3-site-common.spec $SPECTMP
-    fi
+    cat $BUILDDIR/typo3-common.spec >> $SPECTMP
+    echo " " >> $SPECTMP
     cat $SPEC >> $SPECTMP
+    echo " " >> $SPECTMP
+    if [ $PKGNAME == "quickstart" ]; then
+	cat $BUILDDIR/typo3-site-common.spec >> $SPECTMP
+	echo " " >> $SPECTMP
+    fi
     sed -i s/~~TYPOVERSION~~/$TYPOVERSION/g $SPECTMP
     sed -i s/~~RPMRELEASE~~/$RPMRELEASE/ $SPECTMP
     sed -i "s/^#$BUILDSUBFLAVOR:\s*//" $SPECTMP
+    grep -v "^#" $SPECTMP > $SPECTMP.r # remove comments
+    mv -f $SPECTMP.r $SPECTMP
 
 #    exit 0
 
