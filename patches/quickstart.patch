@@ -41,35 +41,3 @@ diff -r -c ./typo3conf/localconf.php ../quickstart-3.6.1.orig/typo3conf/localcon
 + // Updated by TYPO3 Install Tool 30-05-2004 14:42:01
   ?>
 \ No newline at end of file
-Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_localconf.php
-Only in ../quickstart-3.6.1.orig/typo3conf: temp_CACHED_ps13b0_ext_tables.php
-Only in ../quickstart-3.6.1.orig/typo3temp: 48dddc4357.png
-Only in ../quickstart-3.6.1.orig/typo3temp: 703ae04d2e.png
-Only in ../quickstart-3.6.1.orig/typo3temp: a4619eabc1.png
-Only in ../quickstart-3.6.1.orig/typo3temp: c8bc8a1748.png
-Only in ../quickstart-3.6.1.orig/typo3temp: charset_iso-8859-1.tbl
-Only in ../quickstart-3.6.1.orig/typo3temp: GB_044e46f4cc.png
-Only in ../quickstart-3.6.1.orig/typo3temp: GB_074d79de21.png
-Only in ../quickstart-3.6.1.orig/typo3temp: GB_735586e571.png
-Only in ../quickstart-3.6.1.orig/typo3temp: GB_faec835ed8.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_44f1273ab1.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_48784f637a.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_a8f7a333c8.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_d1fa76faad.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_f6b0cedc4d.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_fcaf26c521.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_fe1e67e805.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_ai.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_bmp.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_gif.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_jpg.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_pcx.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_pdf.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_png.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_tga.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_read_tif.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_gif.gif
-Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_jpg.jpg
-Only in ../quickstart-3.6.1.orig/typo3temp: install_scale_png.png
-Only in ../quickstart-3.6.1.orig/typo3temp: install_write_gif.gif
-Only in ../quickstart-3.6.1.orig/typo3temp: install_write_png.png

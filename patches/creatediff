@@ -56,7 +56,16 @@ m1_diff() {
     
 }
 
-echo "Processing:"
+case "$1" in
+    "typo3" )
+	m1_diff typo3 typo3_src-$TYPOVERSION /usr/lib/typo3 /usr/lib/typo3
+    ;;
+    "quickstart" | "dummy" | "testsite" )
+	m1_diff $1 $1-$TYPOVERSION /var/typo3/$1 /var/typo3/$1
+    ;;
+    * ) echo "Choose what to diff."
+esac
 
-m1_diff typo3 typo3_src-$TYPOVERSION /usr/lib/typo3 /usr/lib/typo3
-m1_diff quickstart quickstart-$TYPOVERSION /var/typo3/quickstart /var/typo3/quickstart
+
+
+
