@@ -8,8 +8,7 @@
 #     - blahblah.tar.gz contains directory blahblah
 #
 
-. ../settings
-
+TYPOVERSION=`cat ../VERSION`
 SRCDIR=`dirname $0`
 SRCDIR="$SRCDIR/../src"
 
@@ -48,7 +47,8 @@ m1_diff() {
     # Diff'em there
     pushd $BUILDDIR/$ORIGINAL > /dev/null
     find -type l -exec rm -f {} \; # we need to get rid of diffs for symlinks
-    diff -r -c . ../$ORIGINAL.orig > ../$PKGNAME.patch
+    #diff -r -c . ../$ORIGINAL.orig > ../$PKGNAME.patch
+    diff -r -u . ../$ORIGINAL.orig > ../$PKGNAME.patch
     popd > /dev/null
     
     # Copy the patch here

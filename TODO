@@ -1,3 +1,2 @@
 
-- rebuild ImageMagick so it would look for delegates.mgk in the 
-  directory where the binary was started from.
+

@@ -1,13 +1,11 @@
-#
-#  RPM Spec file for ImageMagick 4.2.8 used by TYPO3 RPMs
-#  Dimitri Tarassenko <m1tk4@hotmail.com>
-#
-#  $Date$	$Revision$ $Name$
-#
+m4_dnl
+m4_dnl  ImageMagick 4.2.9 for TYPO3
+m4_dnl
+m4_sinclude(typo3-common.spec)
 
 Name: typo3-ImageMagick4
 Version: 4.2.9
-Release: 1.1
+Release: m4_imagick_release
 Summary: ImageMagick 4.2.9 for TYPO3
 Group: Applications/Multimedia
 
@@ -20,7 +18,7 @@ BuildRequires: libtiff-devel
 BuildRequires: zlib-devel
 
 Source0: ftp://ftp.wizards.dupont.com/pub/ImageMagick/ImageMagick-%{version}.tar.gz
-Source1: ImageMagick4.tar.gz
+Source1: ImageMagick4.tgz
 
 Patch0: ImageMagick-4.2.9-delegates.patch
 
@@ -38,7 +36,7 @@ This version of ImageMagick is a custom build made specifically
 for TYPO3 Content Management System
 
 %prep
-%setup -b 1 -n ImageMagick-%{version}
+%setup -q -b 1 -n ImageMagick-%{version}
 %patch -b .delegates
 
 %build
@@ -53,8 +51,8 @@ for TYPO3 Content Management System
 
 %install
 %__rm -rf $RPM_BUILD_ROOT
-%__mkdir_p $RPM_BUILD_ROOT/usr/lib/typo3/ImageMagick4
-%__mv -f combine identify convert README.txt  delegates/delegates.mgk $RPM_BUILD_ROOT/usr/lib/typo3/ImageMagick4
+%__mkdir_p $RPM_BUILD_ROOT%{typo_libdir}/ImageMagick4
+%__mv -f combine identify convert README.txt  delegates/delegates.mgk $RPM_BUILD_ROOT%{typo_libdir}/ImageMagick4
 %__cp --recursive ../ImageMagick4/* --target-directory=$RPM_BUILD_ROOT
 
 %clean
@@ -62,9 +60,13 @@ for TYPO3 Content Management System
 
 %files
 %defattr(-,root,root)
-/usr/lib/typo3/ImageMagick4
+%{typo_libdir}/ImageMagick4
 
 %changelog
+
+* Fri Jul 16 2004 Dimitri Tarassenko <mitka@mitka.us> 4.2.9-1.2
+- make+m4 processing implemented instead of shell scripts
+- typo_libdir used
 
 * Tue Jun 01 2004 Dimitri Tarassenko <mitka@mitka.us> 4.2.9-1.1
 - delegates.mgk is only taken from the directory where the binary is
