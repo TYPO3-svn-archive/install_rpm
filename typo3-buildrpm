@@ -51,6 +51,7 @@ buildrpm() {
     rpmbuild -bb --target=$BUILDPLATFORM $SPECTMP > /tmp/m1_build.out
     if [ "$?" == "0" ]; then
 	rm /tmp/m1_build.out
+	rm -f $BUILDDIR/rpmerror.out
     else
 	echo "Error while building RPM. See details in rpmerror.out"
 	mv /tmp/m1_build.out $BUILDDIR/rpmerror.out

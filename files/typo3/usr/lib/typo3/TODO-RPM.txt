@@ -1,0 +1,22 @@
+
+TODO List for RPM Packages
+--------------------------
+
+NOTE: This file contains TODO items related to RPM packaging and
+RedHat/SuSE compatibility only. Everything else should go to (be 
+looked up at) the TODO.txt in the same directory.
+
+
+----------------------------------------------------------------------
+
+- superadmin script > point to the default location for TYPO3 sites,
+  maybe change the script to include small pieces from each of the 
+  typo3-site-* packages???
+
+- something must be done about date and time formats. We have 
+  d-m-Y hardcoded in lots of places and jsfunc.evalfield.js is just
+  plain wrong about dates as well. I've changed some stuff to use
+  U.S. date formats but what'll the other folks do?
+
+-- Dimitri Tarassenko <mitka@mitka.us>
+
