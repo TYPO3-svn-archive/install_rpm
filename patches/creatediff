@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#  NOTE:
+#
+#  The script assumes that sources are:
+#    
+#     - tar.gz
+#     - blahblah.tar.gz contains directory blahblah
+#
+
+. ../settings
+
+SRCDIR=`dirname $0`
+SRCDIR="$SRCDIR/../src"
+
+# clear our sandbox
+BUILDDIR="/tmp/m1_diff"
+rm -rf BUILDDIR
+mkdir -p $BUILDDIR
+
+
+m1_diff() {
+    PKGNAME=$1
+    ORIGINAL=$2
+    INSTALLED=$3
+    ADDFILES=$4
+    
+    echo " - $PKGNAME"    
+    
+    # Copy the original files and remove symlinks
+    cp -rf $INSTALLED/* --target-directory=$BUILDDIR/$ORIGINAL.orig
+    pushd $BUILDDIR/$ORIGINAL.orig > /dev/null
+    find -type l -exec rm -f {} \; # we need to get rid of diffs for symlinks
+    popd > /dev/null
+    
+    # Unpack the source
+    cp -f $SRCDIR/$ORIGINAL.tar.gz --target-directory=$BUILDDIR
+    pushd $BUILDDIR > /dev/null
+    rm -rf $ORIGINAL
+    tar xvzf $ORIGINAL.tar.gz > /dev/null
+    popd > /dev/null
+    
+    # Copy all our additional files
+    cp -rf ../files/$PKGNAME/$ADDFILES/* --target-directory=$BUILDDIR/$ORIGINAL
+    
+    # Diff'em there
+    pushd $BUILDDIR/$ORIGINAL > /dev/null
+    find -type l -exec rm -f {} \; # we need to get rid of diffs for symlinks
+    diff -r -c . ../$ORIGINAL.orig > ../$PKGNAME.patch
+    popd > /dev/null
+    
+    # Copy the patch here
+    mv -f $BUILDDIR/$PKGNAME.patch .
+    
+}
+
+echo "Processing:"
+
+m1_diff typo3 typo3_src-$TYPOVERSION /usr/lib/typo3-$TYPOVERSION /usr/lib/typo3-$TYPOVERSION
