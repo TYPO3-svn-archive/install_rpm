@@ -14,12 +14,12 @@ m4_dnl
 m4_define( m4_make_sure, `m4_dnl
 # make sure "$1" is really executed!
 	for x in 1 2 3 4 5; do
-	    $1
+	    $1 >/dev/null
 	    if [ $? -eq 0 ]; then
 	        break;
 	    else
-		echo "Failed [$?], retrying $x : $1"
-	        sleep 5
+		#echo "Failed [$?], retrying $x : $1"
+	        sleep 3
 	    fi
 	done
 ')m4_dnl
