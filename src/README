@@ -1,6 +1,10 @@
-This directory should contain TYPO3 core and other sources in .tgz form.
-For example, for TYPO3 version 3.6.1 this directory should contain:
+./src directory should contain TYPO3 and other sources in .tgz form.
+For TYPO3 version 3.6.1 this directory should contain:
 
   typo3_src-3.6.1.tar.gz
-  ....
-  
+
+  dummy-3.6.1.tar.gz
+  quickstart-3.6.1.tar.gz
+  testsite-3.6.1.tar.gz
+
+  ImageMagick-4.2.9.tar.gz
