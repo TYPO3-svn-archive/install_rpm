@@ -1,5 +1,5 @@
 #
-#  RPM Spec file for Quickstart test site of TYPO3
+#  RPM Spec file for ImageMagick 4.2.8 used by TYPO3 RPMs
 #  Dimitri Tarassenko <m1tk4@hotmail.com>
 #
 #  $Date$	$Revision$ $Name$
